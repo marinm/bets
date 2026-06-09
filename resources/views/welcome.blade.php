@@ -3,8 +3,7 @@
 @section('title', config('app.name'))
 
 @section('content')
-    <div class="text-center text-white flex flex-col items-center justify-center h-screen">
-        <h1 class="text-2xl">FIFA World Cup 2026 Bets</h1>
-        <p class="mt-10">Ask Marin for your sign in link</p>
+    <div class="flex flex-col justify-start items-start gap-4">
+        <a href="{{ route('teams.index') }}" class="w-full text-white mb-4 inline-block border border-whites p-4 rounded">Teams</a>
     </div>
 @endsection
