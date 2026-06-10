@@ -7,8 +7,15 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', fn () => view('welcome'))->name('home');
+
 Route::get('/one-time-links/{secret}', [OneTimeTokenController::class, 'signIn'])->name('one-time-links.sign-in');
-Route::get('/', fn () => view('welcome'));
+
+Route::post('/logout', function () {
+    auth()->logout();
+
+    return redirect('/');
+})->name('logout');
 
 Route::resource('bets', BetController::class);
 Route::resource('fixtures', FixtureController::class);
