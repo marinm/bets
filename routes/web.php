@@ -8,8 +8,8 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => view('menu'))->name('menu');
-
+Route::get('/', fn () => redirect()->route('menu'))->name('home');
+Route::get('/login', fn () => view('login'))->name('login');
 Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
 Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.store');
 
@@ -19,8 +19,11 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-Route::resource('bets', BetController::class);
-Route::resource('fixtures', FixtureController::class);
-Route::resource('teams', TeamController::class);
-Route::resource('users', UserController::class);
-Route::resource('one-time-tokens', OneTimeTokenController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/menu', fn () => view('menu'))->name('menu');
+    Route::resource('bets', BetController::class);
+    Route::resource('fixtures', FixtureController::class);
+    Route::resource('teams', TeamController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('one-time-tokens', OneTimeTokenController::class);
+});
