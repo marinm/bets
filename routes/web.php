@@ -19,7 +19,7 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/menu', fn () => view('menu'))->name('menu');
     Route::resource('bets', BetController::class);
     Route::resource('fixtures', FixtureController::class);
