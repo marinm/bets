@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\OneTimeToken;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class OneTimeTokenController extends Controller
@@ -74,20 +73,5 @@ class OneTimeTokenController extends Controller
         $oneTimeToken->delete();
 
         return redirect()->route('one-time-tokens.index');
-    }
-
-    public function signIn($secret)
-    {
-        $oneTimeToken = OneTimeToken::where('secret', $secret)->first();
-
-        if (!$oneTimeToken) {
-            return redirect('/')->with('error', 'Invalid or expired token');
-        }
-
-        $user = $oneTimeToken->user;
-        Auth::login($user);
-        $oneTimeToken->forceDelete();
-
-        return redirect('/');
     }
 }

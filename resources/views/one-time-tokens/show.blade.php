@@ -12,7 +12,12 @@
     <div class="bg-gray-800 p-4 rounded">
         <p class="text-gray-400">User: {{ $oneTimeToken->user->name }}</p>
         <p class="text-gray-400">Secret: {{ $oneTimeToken->secret }}</p>
-        <p class="text-gray-400">Sign-in Link: <a href="{{ route('one-time-links.sign-in', $oneTimeToken->secret) }}" class="text-blue-500 hover:text-blue-400">{{ url('/one-time-links/' . $oneTimeToken->secret) }}</a></p>
+        <p class="text-gray-400">
+            Sign-in Link:
+            <a href="{{ route('sessions.create', ['oneTimeToken' => $oneTimeToken->secret]) }}" class="text-blue-500 hover:text-blue-400">
+                {{ route('sessions.create', ['oneTimeToken' => $oneTimeToken->secret]) }}
+            </a>
+        </p>
         <p class="text-gray-400">Created: {{ $oneTimeToken->created_at->format('Y-m-d H:i') }}</p>
     </div>
 

@@ -3,13 +3,15 @@
 use App\Http\Controllers\BetController;
 use App\Http\Controllers\FixtureController;
 use App\Http\Controllers\OneTimeTokenController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => view('welcome'))->name('home');
 
-Route::get('/one-time-links/{secret}', [OneTimeTokenController::class, 'signIn'])->name('one-time-links.sign-in');
+Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
+Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.store');
 
 Route::post('/logout', function () {
     auth()->logout();
