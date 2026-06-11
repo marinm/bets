@@ -44,7 +44,10 @@ class OneTimeTokenController extends Controller
     {
         $oneTimeToken->load('user');
 
-        return view('one-time-tokens.show', ['oneTimeToken' => $oneTimeToken]);
+        return view('one-time-tokens.show', [
+            'oneTimeToken' => $oneTimeToken,
+            'url' => route('sessions.create', ['oneTimeToken' => $oneTimeToken->secret]),
+        ]);
     }
 
     public function edit(OneTimeToken $oneTimeToken)
