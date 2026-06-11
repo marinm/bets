@@ -19,6 +19,7 @@
                     <p class="text-white text-lg font-bold truncate">{{ $fixture->team1->long_name }}</p>
                     <p class="text-white text-lg font-bold truncate">{{ $fixture->team2->long_name }}</p>
                     <p class="text-gray-400">{{ $fixture->started_at->format('Y-m-d H:i') }} - {{ $fixture->is_finished ? 'Finished' : 'Upcoming' }}</p>
+                    <p class="text-gray-400">{{ $fixture->bets_count }} {{ Str::plural('bet', $fixture->bets_count) }}</p>
                 </div>
                 @if ($fixture->bets->isNotEmpty())
                     <p class="text-green-400">Bet Placed</p>
