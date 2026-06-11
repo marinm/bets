@@ -27,10 +27,10 @@ class FixtureController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'started_at' => 'required|date_format:Y-m-d\TH:i',
+            'started_at' => 'required|date',
             'team_1_id' => 'required|exists:teams,id|different:team_2_id',
             'team_2_id' => 'required|exists:teams,id|different:team_1_id',
-            'bets_closed_at' => 'required|date_format:Y-m-d\TH:i|before:started_at',
+            'bets_closed_at' => 'required|date',
             'is_finished' => 'boolean',
             'winning_team_id' => 'nullable|exists:teams,id',
         ]);
@@ -60,10 +60,10 @@ class FixtureController extends Controller
     public function update(Request $request, Fixture $fixture)
     {
         $validated = $request->validate([
-            'started_at' => 'required|date_format:Y-m-d\TH:i',
+            'started_at' => 'required|date',
             'team_1_id' => 'required|exists:teams,id|different:team_2_id',
             'team_2_id' => 'required|exists:teams,id|different:team_1_id',
-            'bets_closed_at' => 'required|date_format:Y-m-d\TH:i|before:started_at',
+            'bets_closed_at' => 'required|date',
             'is_finished' => 'boolean',
             'winning_team_id' => 'nullable|exists:teams,id',
         ]);

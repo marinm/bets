@@ -12,7 +12,8 @@
         @foreach ($fixtures as $fixture)
             <a href="{{ route('fixtures.show', ['fixture' => $fixture]) }}" class="bg-gray-800 p-4 rounded flex justify-between items-center">
                 <div class="flex-1">
-                    <h2 class="text-white text-lg font-bold">{{ $fixture->team1->long_name }} vs {{ $fixture->team2->long_name }}</h2>
+                    <p class="text-white text-lg font-bold truncate">{{ $fixture->team1->long_name }}</p>
+                    <p class="text-white text-lg font-bold truncate">{{ $fixture->team2->long_name }}</p>
                     <p class="text-gray-400">{{ $fixture->started_at->format('Y-m-d H:i') }}</p>
                 </div>
                 <p class="text-gray-400">{{ $fixture->is_finished ? 'Finished' : 'Upcoming' }}</p>
