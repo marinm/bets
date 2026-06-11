@@ -33,7 +33,6 @@ class FixtureBetController extends Controller
             'user_id' => $user->id,
             'fixture_id' => $fixture->id,
             'winner_team_id' => $validated['winner_team_id'],
-            'amount_cents' => 100,
         ]);
 
         return redirect()->route('feed');

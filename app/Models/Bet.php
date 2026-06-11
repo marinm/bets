@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bet extends Model
 {
-    protected $fillable = ['user_id', 'fixture_id', 'winner_team_id', 'amount_cents'];
+    protected $fillable = ['user_id', 'fixture_id', 'winner_team_id'];
 
     public function user()
     {

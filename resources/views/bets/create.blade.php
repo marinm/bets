@@ -45,13 +45,6 @@
         @error('winner_team_id')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
-        <label class="flex flex-col text-white">
-            Amount (cents)
-            <input type="number" name="amount_cents" value="{{ old('amount_cents') }}" placeholder="1000" class="w-full p-2 text-white bg-black border border-white" />
-        </label>
-        @error('amount_cents')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
         <button type="submit" class="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded">Create Bet</button>
     </form>
 @endsection

@@ -32,7 +32,6 @@ class BetController extends Controller
             'user_id' => 'required|exists:users,id',
             'fixture_id' => 'required|exists:fixtures,id',
             'winner_team_id' => 'nullable|exists:teams,id',
-            'amount_cents' => 'required|integer|min:1',
         ]);
 
         Bet::create($validated);
@@ -64,7 +63,6 @@ class BetController extends Controller
             'user_id' => 'required|exists:users,id',
             'fixture_id' => 'required|exists:fixtures,id',
             'winner_team_id' => 'nullable|exists:teams,id',
-            'amount_cents' => 'required|integer|min:1',
         ]);
 
         $bet->update($validated);

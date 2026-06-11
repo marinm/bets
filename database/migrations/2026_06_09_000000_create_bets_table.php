@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('fixture_id')->constrained('fixtures')->onDelete('cascade');
             $table->foreignId('winner_team_id')->nullable()->constrained('teams')->onDelete('set null');
-            $table->integer('amount_cents');
         });
     }
 
