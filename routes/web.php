@@ -8,7 +8,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect()->route('menu'))->name('home');
+Route::get('/', fn () => redirect()->route('feed'))->name('home');
 Route::get('/login', fn () => view('login'))->name('login');
 Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
 Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.store');
@@ -19,8 +19,12 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/feed', fn () => view('feed'))->name('feed');
+});
+
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/menu', fn () => view('menu'))->name('menu');
+    Route::get('/admin-menu', fn () => view('admin-menu'))->name('admin-menu');
     Route::resource('bets', BetController::class);
     Route::resource('fixtures', FixtureController::class);
     Route::resource('teams', TeamController::class);

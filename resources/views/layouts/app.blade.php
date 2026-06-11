@@ -21,7 +21,7 @@
         <div class="container max-w-sm p-4">
             @auth
                 <div class="w-full bg-gray-800 p-4 flex justify-between items-center mb-4">
-                    <a href="{{ route('menu') }}" class="text-white font-bold">Menu</a>
+                    <a href="{{ route('feed') }}" class="text-white font-bold">Feed</a>
                     <a href="{{ route('users.show', Auth::user()) }}" class="text-white mr-4">{{ Auth::user()->name }}</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
