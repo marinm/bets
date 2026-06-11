@@ -9,15 +9,14 @@
     <form action="{{ route('one-time-tokens.store') }}" method="POST">
         @method('POST')
         @csrf
-        <label class="flex flex-col text-white">
-            User
-            <select name="user_id" class="w-full p-2 text-white bg-black border border-white">
-                <option value="">Select User</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
-                @endforeach
-            </select>
-        </label>
+        <div class="border border-white rounded">
+            @foreach ($users as $user)
+            <label class="p-2 block text-white">
+                <input type="radio" name="user_id" value="{{ $user->id }}" />
+                {{ $user->name }}
+            </label>
+            @endforeach
+        </div>
         @error('user_id')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
