@@ -23,6 +23,8 @@ Route::post('/logout', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/feed', FeedController::class)->name('feed');
+    Route::post('/fixtures/{fixture}/bets', [FixtureBetController::class, 'store'])->name('fixture-bets.store');
+    Route::get('/fixtures/{fixture}/bets/create', [FixtureBetController::class, 'create'])->name('fixture-bets.create');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -32,6 +34,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('teams', TeamController::class);
     Route::resource('users', UserController::class);
     Route::resource('one-time-tokens', OneTimeTokenController::class);
-    Route::post('/fixtures/{fixture}/bets', [FixtureBetController::class, 'store'])->name('fixture-bets.store');
-    Route::get('/fixtures/{fixture}/bets/create', [FixtureBetController::class, 'create'])->name('fixture-bets.create');
 });
