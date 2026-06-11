@@ -12,8 +12,12 @@ class FixtureBetController extends Controller
     {
         $fixture->load(['team1', 'team2']);
 
+        $user = request()->user();
+        $bet = Bet::with('winnerTeam')->firstWhere(['user_id' => $user->id, 'fixture_id' => $fixture->id]);
+
         return view('fixture-bets.create', [
             'fixture' => $fixture,
+            'bet' => $bet,
         ]);
     }
 

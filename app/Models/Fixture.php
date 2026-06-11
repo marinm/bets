@@ -28,4 +28,9 @@ class Fixture extends Model
     {
         return $this->belongsTo(Team::class, 'winning_team_id');
     }
+
+    public function bets()
+    {
+        return $this->hasMany(Bet::class);
+    }
 }

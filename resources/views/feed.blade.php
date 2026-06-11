@@ -14,13 +14,16 @@
     @endauth
     <div class="flex flex-col gap-4">
         @foreach ($fixtures as $fixture)
-            <a href="{{ route('fixture-bets.create', ['fixture' => $fixture]) }}" class="bg-gray-800 p-4 rounded flex justify-between items-center">
+            <a href="{{ route('fixture-bets.create', ['fixture' => $fixture]) }}" class="bg-gray-800 p-4 rounded-xl flex justify-between items-center">
                 <div class="flex-1">
                     <p class="text-white text-lg font-bold truncate">{{ $fixture->team1->long_name }}</p>
                     <p class="text-white text-lg font-bold truncate">{{ $fixture->team2->long_name }}</p>
-                    <p class="text-gray-400">{{ $fixture->started_at->format('Y-m-d H:i') }}</p>
+                    <p class="text-gray-400">{{ $fixture->started_at->format('Y-m-d H:i') }} - {{ $fixture->is_finished ? 'Finished' : 'Upcoming' }}</p>
                 </div>
-                <p class="text-gray-400">{{ $fixture->is_finished ? 'Finished' : 'Upcoming' }}</p>
+                @if ($fixture->bets->isNotEmpty())
+                    <p class="text-green-400">Bet Placed</p>
+                @endif
+                
             </a>
         @endforeach
     </div>
