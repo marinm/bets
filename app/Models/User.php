@@ -19,5 +19,6 @@ class User extends Authenticatable
         'name',
         'internal_name',
         'balance_cents',
+        'timezone',
     ];
 }

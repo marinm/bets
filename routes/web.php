@@ -8,6 +8,7 @@ use App\Http\Controllers\OneTimeTokenController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserTimezoneController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('feed'))->name('home');
@@ -25,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/feed', FeedController::class)->name('feed');
     Route::post('/fixtures/{fixture}/bets', [FixtureBetController::class, 'store'])->name('fixture-bets.store');
     Route::get('/fixtures/{fixture}/bets/create', [FixtureBetController::class, 'create'])->name('fixture-bets.create');
+    Route::get('/profile/timezone/edit', [UserTimezoneController::class, 'edit'])->name('profile.timezone.edit');
+    Route::put('/profile/timezone', [UserTimezoneController::class, 'update'])->name('profile.timezone.update');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
