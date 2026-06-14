@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <a href="{{ route('feed') }}" class="block mt-2 mb-2 text-gray-400">Back</a>
     <h1 class="text-white text-2xl font-bold mb-6">Profile</h1>
 
     <form action="{{ route('profile.update') }}" method="POST" class="mb-6">
