@@ -3,6 +3,8 @@
 @section('title', 'Create Bet')
 
 @section('content')
+    <a href="{{ route('feed') }}" class="block mt-2 text-gray-400">Back</a>
+
     <div class="bg-gray-800 p-4 mt-10 mb-4 rounded flex justify-between items-center">
         <div class="flex-1">
             <p class="text-white text-lg font-bold truncate">{{ $fixture->team1->long_name }}</p>
@@ -48,8 +50,22 @@
         </form>
     @endif
 
-    <div class="block text-center mt-4">
-        <a href="{{ route('feed') }}" class="text-center text-gray-400 mt-12 inline-block">Back</a>
-    </div>
+    <h2 class="text-white text-lg font-bold truncate mt-8 mb-2">All bets</h2>
 
+    @foreach ($fixture->bets as $bet)
+        <div class="bg-gray-800 p-4 mb-2 rounded flex justify-between items-center">
+            <p class="text-gray-400">{{ $bet->user->name }}</p>
+            <div class="flex items-center gap-2">
+                @if($bet->winnerTeam)
+                    <span class="text-white">
+                        {{ $bet->winnerTeam->country_code }}
+                    </span>
+                    <span class="fi fi-{{ strtolower($bet->winnerTeam->country_code) }}"></span>
+                @else
+                    <span class="text-gray-400">Tie</span>
+                @endif
+            </div>
+        </div>
+    @endforeach
+    </div>
 @endsection
