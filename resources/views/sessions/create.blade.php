@@ -14,7 +14,6 @@
         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
         <button type="submit" class="mt-4 px-12 py-4 bg-stone-500 text-white rounded-full">Continue</button>
-        <a href="{{ route('feed') }}" class="text-stone-500 mt-10 mb-4 inline-block">Cancel</a>
     </form>
 </div>
 @endsection
