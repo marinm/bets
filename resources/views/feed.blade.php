@@ -20,7 +20,7 @@
                     {{ $fixture->team1->long_name }}
                 </p>
                 <p class="text-white text-lg font-bold truncate">
-                    <span class="fi fi-{{ $fixture->team2->country_code }}"></span>
+                    <span class="fi fi-{{ strtolower($fixture->team2->country_code) }}"></span>
                     {{ $fixture->team2->long_name }}
                 </p>
                 <div class="flex justify-between items-center mt-2">
