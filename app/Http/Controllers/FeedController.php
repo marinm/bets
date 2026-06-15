@@ -14,7 +14,7 @@ class FeedController extends Controller
             ->with(['team1', 'team2', 'bets' => function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             }])
-            ->orderBy('started_at')
+            ->orderByDesc('started_at')
             ->get();
 
         $user->loadCount('bets');
