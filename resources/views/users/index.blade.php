@@ -14,12 +14,11 @@
         </div>
     @endsession
 
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col border border-white rounded">
         @foreach ($users as $user)
-            <a href="{{ route('users.show', ['user' => $user]) }}" class="bg-gray-800 p-4 rounded flex justify-between items-center">
+            <a href="{{ route('users.show', ['user' => $user]) }}" class="p-4 flex justify-between items-center border-b border-white last:border-b-0">
                 <div class="flex-1">
                     <h2 class="text-white text-lg font-bold">{{ $user->name }}</h2>
-                    <p class="text-gray-400">{{ $user->internal_name }} - Balance: {{ number_format($user->balance_cents / 100, 2) }}</p>
                 </div>
             </a>
         @endforeach
