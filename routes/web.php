@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserNameController;
 use App\Http\Controllers\UserTimezoneController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/fixtures/{fixture}/bets/create', [FixtureBetController::class, 'create'])->name('fixture-bets.create');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/name/edit', [UserNameController::class, 'edit'])->name('profile.name.edit');
+    Route::post('/profile/name', [UserNameController::class, 'store'])->name('profile.name.store');
     Route::get('/profile/timezone/edit', [UserTimezoneController::class, 'edit'])->name('profile.timezone.edit');
     Route::put('/profile/timezone', [UserTimezoneController::class, 'update'])->name('profile.timezone.update');
 });
