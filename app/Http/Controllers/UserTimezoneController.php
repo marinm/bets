@@ -29,6 +29,6 @@ class UserTimezoneController extends Controller
 
         $request->user()->update($validated);
 
-        return redirect()->route('profile.timezone.edit');
+        return redirect()->route('profile.show');
     }
 }

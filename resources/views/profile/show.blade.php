@@ -1,40 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{ route('feed') }}" class="block mt-2 mb-2 text-gray-400">Back</a>
+    <a href="{{ route('feed') }}" class="block mt-2 mb-2 text-gray-400">Home</a>
     <h1 class="text-white text-2xl font-bold mb-6">Profile</h1>
 
-    <form action="{{ route('profile.update') }}" method="POST" class="mb-6">
-        @method('PUT')
-        @csrf
-        <label class="flex flex-col text-white mb-3">
-            Name
-            <input
-                type="text"
-                name="name"
-                value="{{ old('name', $user->name) }}"
-                placeholder="Name"
-                class="w-full p-2 text-white bg-black border border-white mt-1"
-            />
-        </label>
-        @error('name')
-            <p class="text-red-500 text-sm mt-1 mb-3">{{ $message }}</p>
-        @enderror
-        <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white rounded">Update Name</button>
-    </form>
+    <svg xmlns="http://www.w3.org/2000/svg" class="m-auto text-white w-32 h-32 mb-10" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+    </svg>
 
-    <div class="mb-6">
-        <a href="{{ route('profile.timezone.edit') }}" class="block w-full px-4 py-2 bg-gray-600 text-white text-center rounded hover:bg-gray-700">
-            Edit Timezone
+    <div class="border border-white rounded">
+        <a href="{{ route('profile.name.edit') }}" class="flex items-center justify-between w-full p-4 border-b border-white">
+            <span class="text-white">Name</span>
+            <span class="text-gray-400">{{ $user->name }}</span>
+        </a>
+        <a href="{{ route('profile.timezone.edit') }}" class="flex items-center justify-between w-full p-4">
+            <span class="text-white">Timezone</span>
+            <span class="text-gray-400">{{ $user->timezone }}</span>
         </a>
     </div>
 
-    <div>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
-                Logout
-            </button>
-        </form>
-    </div>
+
+    <form action="{{ route('logout') }}" method="POST" class="flex justify-center mt-16">
+        @csrf
+        <button type="submit" class="px-12 py-4 bg-red-500 text-white rounded-full">
+            Logout
+        </button>
+    </form>
 @endsection
