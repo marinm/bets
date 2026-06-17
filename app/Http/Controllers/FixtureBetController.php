@@ -8,11 +8,29 @@ use Illuminate\Http\Request;
 
 class FixtureBetController extends Controller
 {
-    public function create(Fixture $fixture)
+    public function index(Request $request, Fixture $fixture)
+    {
+        $user = $request->user();
+
+        $bet = $fixture->bets->firstWhere('user_id', $user->id);
+
+        if (! $bet) {
+            return redirect()->route('fixture-bets.create', $fixture);
+        }
+
+        $fixture->load(['team1', 'team2', 'bets.winnerTeam']);
+
+        return view('fixture-bets.index', [
+            'bet' => $bet,
+            'fixture' => $fixture,
+        ]);
+    }
+
+    public function create(Request $request, Fixture $fixture)
     {
         $fixture->load(['team1', 'team2']);
 
-        $user = request()->user();
+        $user = $request->user();
         $bet = Bet::with('winnerTeam')->firstWhere(['user_id' => $user->id, 'fixture_id' => $fixture->id]);
 
         return view('fixture-bets.create', [
@@ -35,6 +53,6 @@ class FixtureBetController extends Controller
             'winner_team_id' => $validated['winner_team_id'],
         ]);
 
-        return redirect()->route('feed');
+        return redirect()->route('fixture-bets.index', $fixture);
     }
 }

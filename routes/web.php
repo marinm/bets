@@ -26,6 +26,7 @@ Route::post('/logout', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/feed', FeedController::class)->name('feed');
+    Route::get('/fixtures/{fixture}/bets', [FixtureBetController::class, 'index'])->name('fixture-bets.index');
     Route::post('/fixtures/{fixture}/bets', [FixtureBetController::class, 'store'])->name('fixture-bets.store');
     Route::get('/fixtures/{fixture}/bets/create', [FixtureBetController::class, 'create'])->name('fixture-bets.create');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');

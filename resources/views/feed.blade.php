@@ -13,7 +13,12 @@
     </div>
     <div class="flex flex-col gap-4">
         @foreach ($fixtures as $fixture)
-            <a href="{{ route('fixture-bets.create', ['fixture' => $fixture]) }}" class="bg-gray-900 p-4 rounded-xl flex justify-between items-center gap-4">
+            @php
+                $url = $fixture->bets_exists
+                    ? route('fixture-bets.index', $fixture)
+                    : route('fixture-bets.create', $fixture)
+            @endphp
+            <a href="{{ $url }}" class="bg-gray-900 p-4 rounded-xl flex justify-between items-center gap-4">
                 <p class="text-gray-400 font-mono">{{ $fixture->started_at->format('M d') }}</p>
                 <div class="text-2xl font-mono text-white">
                     <span class="fi fi-{{ strtolower($fixture->team1->country_code) }}"></span>
