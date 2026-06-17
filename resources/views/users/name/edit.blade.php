@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{ route('feed') }}" class="text-gray-400 hover:text-white mb-4 inline-block">Back</a>
+    <a href="{{ route('profile.show') }}" class="text-gray-400 hover:text-white mb-4 inline-block">Back</a>
     <form action="{{ route('profile.name.store') }}" method="POST">
         @csrf
 
