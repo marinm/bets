@@ -14,9 +14,9 @@
         {{ $oneTimeToken->created_at->diffForHumans() }}
     </p>
 
-    <div class="bg-white rounded p-2 m-auto w-fit mt-6">
+    <a href="{{ $url }}" class="bg-white rounded-lg p-2 m-auto w-fit mt-6 block">
         <div id="qrcode"></div>
-    </div>
+    </a>
 
     <p class="text-white text-center text-lg bold">{{ $oneTimeToken->user->name }}</p>
 
@@ -32,8 +32,8 @@
     <script>
         new QRCode(document.getElementById("qrcode"), {
             text: "{{ $url }}",
-            width: 300,
-            height: 300,
+            width: 256,
+            height: 256,
             colorDark : "#ffffff",
             colorLight : "#000000",
         });
