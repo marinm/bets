@@ -3,7 +3,7 @@
 @section('title', 'Create One-Time Token')
 
 @section('content')
-    <a href="{{ route('one-time-tokens.index') }}" class="text-gray-400 hover:text-white mb-4 inline-block">One-Time Tokens</a>
+    <a href="{{ route('one-time-tokens.index') }}" class="text-gray-400 hover:text-white mb-4 inline-block">Back</a>
     <h1 class="text-white text-2xl font-bold mb-6">Create a One-Time Token</h1>
 
     <form action="{{ route('one-time-tokens.store') }}" method="POST">
@@ -11,8 +11,8 @@
         @csrf
         <div class="border border-white rounded">
             @foreach ($users as $user)
-            <label class="p-2 block text-white">
-                <input type="radio" name="user_id" value="{{ $user->id }}" />
+            <label class="flex items-center p-4 block text-white border-b border-white">
+                <input type="radio" name="user_id" value="{{ $user->id }}" class="mr-2" />
                 {{ $user->name }}
             </label>
             @endforeach
