@@ -11,18 +11,20 @@
             </svg>
         </a>
     </div>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col border border-white rounded">
         @foreach ($fixtures as $fixture)
             @php
                 $url = $fixture->bets_exists
                     ? route('fixture-bets.index', $fixture)
                     : route('fixture-bets.create', $fixture)
             @endphp
-            <a href="{{ $url }}" class="bg-gray-900 p-4 rounded-xl flex justify-between items-center gap-4">
+            <a href="{{ $url }}" class="p-4 flex justify-between items-center border-b border-white">
                 <p class="text-gray-400 font-mono">{{ $fixture->started_at->format('M d') }}</p>
-                <div class="text-2xl font-mono text-white">
+                <div class=" font-mono text-white">
                     <span class="fi fi-{{ strtolower($fixture->team1->country_code) }}"></span>
+                    {{ $fixture->team1->country_code }}
                     -
+                    {{ $fixture->team2->country_code }}
                     <span class="fi fi-{{ strtolower($fixture->team2->country_code) }}"></span>
                 </div>
                 <p class="text-gray-400 font-mono">{{ $fixture->bets_count }}</p>
