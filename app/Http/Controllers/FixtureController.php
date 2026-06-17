@@ -10,7 +10,9 @@ class FixtureController extends Controller
 {
     public function index()
     {
-        $fixtures = Fixture::with(['team1', 'team2', 'winningTeam'])->orderBy('started_at')->get();
+        $fixtures = Fixture::with(['team1', 'team2', 'winningTeam'])
+            ->orderByDesc('started_at')
+            ->get();
 
         return view('fixtures.index', [
             'fixtures' => $fixtures,
