@@ -50,27 +50,6 @@ class OneTimeTokenController extends Controller
         ]);
     }
 
-    public function edit(OneTimeToken $oneTimeToken)
-    {
-        $oneTimeToken->load('user');
-
-        return view('one-time-tokens.edit', [
-            'oneTimeToken' => $oneTimeToken,
-            'users' => User::orderBy('name')->get(),
-        ]);
-    }
-
-    public function update(Request $request, OneTimeToken $oneTimeToken)
-    {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        $oneTimeToken->update($validated);
-
-        return redirect()->route('one-time-tokens.show', $oneTimeToken);
-    }
-
     public function destroy(OneTimeToken $oneTimeToken)
     {
         $oneTimeToken->delete();

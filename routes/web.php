@@ -43,5 +43,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('fixtures', FixtureController::class);
     Route::resource('teams', TeamController::class);
     Route::resource('users', UserController::class);
-    Route::resource('one-time-tokens', OneTimeTokenController::class);
+    Route::resource('one-time-tokens', OneTimeTokenController::class)->only(['index', 'create', 'store', 'show', 'destroy']);
 });

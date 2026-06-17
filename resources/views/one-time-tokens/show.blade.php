@@ -4,10 +4,7 @@
 
 @section('content')
     <a href="{{ route('one-time-tokens.index') }}" class="text-gray-400 hover:text-white mb-4 inline-block">One-Time Tokens</a>
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-white text-2xl font-bold">One-Time Token</h1>
-        <a href="{{ route('one-time-tokens.edit', $oneTimeToken) }}" class="px-4 py-2 bg-blue-500 text-white rounded">Edit</a>
-    </div>
+    <h1 class="text-white text-2xl font-bold mb-6">One-Time Token</h1>
 
     <div class="bg-gray-800 p-4 rounded">
         <p class="text-gray-400">User: {{ $oneTimeToken->user->name }}</p>
