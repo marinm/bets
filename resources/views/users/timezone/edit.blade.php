@@ -19,7 +19,7 @@
                         class="mr-3"
                     />
                     <span>{{ $tz }}</span>
-                    <span class="text-gray-400 text-sm ml-auto font-mono">{{ now()->setTimezone($tz)->format('H:i A') }}</span>
+                    <span class="text-gray-400 text-sm ml-auto font-mono">{{ now()->setTimezone($tz)->format('h:i A') }}</span>
                 </label>
             @endforeach
         </div>
