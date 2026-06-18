@@ -21,11 +21,11 @@
             <a href="{{ $url }}" class="p-4 flex justify-between items-center border-b border-white">
                 <p class="text-gray-400 font-mono">{{ $fixture->started_at->format('M d') }}</p>
                 <div class=" font-mono text-white">
-                    <span class="fi fi-{{ strtolower($fixture->team1->country_code) }}"></span>
+                    <span class="fi fi-{{ strtolower($fixture->team1->country_code) }} {{ $fixture->team1->id == $fixture->winning_team_id ? 'border-2 border-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-2 border-white' : '' }}"></span>
                     {{ $fixture->team1->country_code }}
                     -
                     {{ $fixture->team2->country_code }}
-                    <span class="fi fi-{{ strtolower($fixture->team2->country_code) }}"></span>
+                    <span class="fi fi-{{ strtolower($fixture->team2->country_code) }} {{ $fixture->team2->id == $fixture->winning_team_id ? 'border-2 border-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-2 border-white' : '' }}"></span>
                 </div>
                 <p class="text-gray-400 font-mono">{{ $fixture->bets_count }}</p>
             </a>
