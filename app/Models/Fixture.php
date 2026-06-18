@@ -33,4 +33,9 @@ class Fixture extends Model
     {
         return $this->hasMany(Bet::class);
     }
+
+    public function userBet()
+    {
+        return $this->hasOne(Bet::class)->ofMany()->where('user_id', auth()->id());
+    }
 }

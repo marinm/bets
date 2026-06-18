@@ -11,12 +11,7 @@ class FeedController extends Controller
         $user = request()->user();
 
         $fixtures = Fixture::withCount('bets')
-            ->with(['team1', 'team2'])
-            ->withExists([
-                'bets' => function ($query) use ($user) {
-                    $query->where('user_id', $user->id);
-                },
-            ])
+            ->with(['team1', 'team2', 'userBet'])
             ->orderByDesc('started_at')
             ->get();
 
