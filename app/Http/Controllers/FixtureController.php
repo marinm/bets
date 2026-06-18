@@ -55,7 +55,6 @@ class FixtureController extends Controller
 
         return view('fixtures.edit', [
             'fixture' => $fixture,
-            'teams' => Team::orderBy('long_name')->get(),
         ]);
     }
 
@@ -63,8 +62,6 @@ class FixtureController extends Controller
     {
         $validated = $request->validate([
             'started_at' => 'required|date',
-            'team_1_id' => 'required|exists:teams,id|different:team_2_id',
-            'team_2_id' => 'required|exists:teams,id|different:team_1_id',
             'bets_closed_at' => 'required|date',
             'is_finished' => 'boolean',
             'winning_team_id' => 'nullable|exists:teams,id',
