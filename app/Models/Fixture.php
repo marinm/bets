@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 
 class Fixture extends Model
 {
@@ -46,8 +45,6 @@ class Fixture extends Model
 
     public function getBettingIsClosedAttribute(): bool
     {
-        $timezone = 'America/Toronto';
-
-        return Carbon::parse($this->bets_closed_at?->toJson(), $timezone)->utc() < now();
+        return $this->is_finished;
     }
 }
