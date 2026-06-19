@@ -5,6 +5,12 @@
 @section('content')
     <a href="{{ route('feed') }}" class="block mt-2 mb-4 text-gray-500">Back</a>
 
+    @if ($fixture->betting_is_closed)
+        <div class="mb-4 flex justify-center items-center p-4 rounded bg-blue-900 text-white">
+            Betting is closed
+        </div>
+    @endif
+
     <div class="p-4 flex justify-between items-center border border-white rounded">
         <p class="text-gray-500 font-mono">{{ $fixture->started_at->format('M d') }}</p>
         <div class="font-mono text-white">
