@@ -47,6 +47,10 @@ class FixtureBetController extends Controller
 
         $user = $request->user();
 
+        if ($user->bets()->where('fixture_id', $fixture->fixture_id)->exists()) {
+            abort(400, "You cannot bet on the same fixture twice.");
+        }
+
         Bet::create([
             'user_id' => $user->id,
             'fixture_id' => $fixture->id,
