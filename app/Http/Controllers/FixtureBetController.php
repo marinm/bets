@@ -45,6 +45,8 @@ class FixtureBetController extends Controller
 
     public function store(Request $request, Fixture $fixture)
     {
+        $user = $request->user();
+        
         if ($fixture->betting_is_closed) {
             abort(400, 'Betting is closed for this fixture.');
         }
@@ -56,8 +58,6 @@ class FixtureBetController extends Controller
         $validated = $request->validate([
             'winner_team_id' => 'nullable|exists:teams,id',
         ]);
-
-        $user = $request->user();
 
         Bet::create([
             'user_id' => $user->id,
