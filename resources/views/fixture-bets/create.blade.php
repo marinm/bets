@@ -7,11 +7,9 @@
 
     <div class="bg-gray-800 p-4 mt-10 mb-4 rounded border border-white">
         <div class="flex items-center justify-start gap-1">
-            <span class="fi fi-{{ strtolower($fixture->team1->country_code) }}"></span>
             <p class="text-white text-lg font-bold truncate">{{ $fixture->team1->long_name }}</p>
         </div>
         <div class="flex items-center justify-start gap-1">
-            <span class="fi fi-{{ strtolower($fixture->team2->country_code) }}"></span>
             <p class="text-white text-lg font-bold truncate">{{ $fixture->team2->long_name }}</p>
         </div>
         <p class="text-gray-400 mt-4">{{ $fixture->started_at->format('D, M j h:i A') }}</p>
@@ -28,7 +26,6 @@
                 </div>
                 <div class="font-mono text-white-800">
                     {{ $fixture->team1->country_code }}
-                    <span class="fi fi-{{ strtolower($fixture->team1->country_code) }}"></span>
                 </div>
             </label>
             <label class="flex justify-between items-center text-white p-4 border-b border-white">
@@ -38,7 +35,6 @@
                 </div>
                 <div class="font-mono text-white-800">
                     {{ $fixture->team2->country_code }}
-                    <span class="fi fi-{{ strtolower($fixture->team2->country_code) }}"></span>
                 </div>
             </label>
             <label class="flex items-center text-white p-4">

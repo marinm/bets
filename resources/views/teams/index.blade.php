@@ -14,7 +14,6 @@
                 <h2 class="">{{ $team->long_name }}</h2>
                 <div class="flex items-center gap-2">
                     <p class="font-mono">{{ $team->country_code }}</p>
-                    <span class="fi fi-{{ strtolower($team->country_code) }} text-4xl"></span>
                 </div>
             </a>
         @endforeach
