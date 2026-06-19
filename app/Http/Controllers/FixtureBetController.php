@@ -18,7 +18,7 @@ class FixtureBetController extends Controller
             return redirect()->route('fixture-bets.create', $fixture);
         }
 
-        $fixture->load(['team1', 'team2', 'bets.winnerTeam']);
+        $fixture->load(['team1', 'team2', 'bets.winnerTeam'])->loadCount('bets');
 
         return view('fixture-bets.index', [
             'bet' => $bet,

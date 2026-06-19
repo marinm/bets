@@ -27,6 +27,7 @@
                             -
                             <span class="{{ $fixture->team2->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team2->country_code }}</span>
                         </div>
+                        <p class="text-gray-400 font-mono">{{ $fixture->bets_count }}</p>
                         @if ($fixture->userBet)
                             @if ($fixture->is_finished)
                                 @if ($fixture->winning_team_id == $fixture->userBet->winner_team_id)
@@ -48,7 +49,6 @@
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                             </svg>
                         @endif
-                        <p class="text-gray-400 font-mono">{{ $fixture->bets_count }}</p>
                     </a>
                 @endforeach
             </div>
