@@ -15,8 +15,6 @@ class FeedController extends Controller
             ->orderByDesc('started_at')
             ->get();
 
-        $user->loadCount('bets');
-
         return view('feed', [
             'fixtures' => $fixtures,
             'user' => $user,
