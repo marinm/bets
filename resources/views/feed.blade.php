@@ -22,12 +22,10 @@
                     @endphp
                     <a href="{{ $url }}" class="p-4 flex justify-between items-center border-b border-gray-800 first:border-t">
                         <p class="text-gray-400 font-mono">{{ $fixture->started_at->format('M d') }}</p>
-                        <div class=" font-mono text-white">
-                            <span class="fi fi-{{ strtolower($fixture->team1->country_code) }} {{ $fixture->team1->id == $fixture->winning_team_id ? 'border-2 border-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-2 border-white' : '' }}"></span>
-                            {{ $fixture->team1->country_code }}
+                        <div class="font-mono text-white">
+                            <span class="{{ $fixture->team1->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team1->country_code }}</span>
                             -
-                            {{ $fixture->team2->country_code }}
-                            <span class="fi fi-{{ strtolower($fixture->team2->country_code) }} {{ $fixture->team2->id == $fixture->winning_team_id ? 'border-2 border-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-2 border-white' : '' }}"></span>
+                            <span class="{{ $fixture->team2->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team2->country_code }}</span>
                         </div>
                         @if ($fixture->userBet)
                             @if ($fixture->is_finished)
