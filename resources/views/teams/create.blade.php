@@ -11,7 +11,7 @@
         @csrf
         <label class="flex flex-col text-white">
             Country code
-            <input type="text" name="country_code" placeholder="XX" class="w-full p-2 text-white bg-black border border-white " />
+            <input type="text" name="country_code" placeholder="XXX" class="w-full p-2 text-white bg-black border border-white " />
         </label>
         @error('country_code')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

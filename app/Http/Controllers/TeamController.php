@@ -22,7 +22,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'country_code' => 'required|string|size:2|unique:teams,country_code',
+            'country_code' => 'required|string|size:3|unique:teams,country_code',
             'long_name' => 'required|string|max:255',
         ]);
 
@@ -44,7 +44,7 @@ class TeamController extends Controller
     public function update(Request $request, Team $team)
     {
         $validated = $request->validate([
-            'country_code' => 'required|string|size:2|unique:teams,country_code,'.$team->id,
+            'country_code' => 'required|string|size:3|unique:teams,country_code,'.$team->id,
             'long_name' => 'required|string|max:255',
         ]);
 
