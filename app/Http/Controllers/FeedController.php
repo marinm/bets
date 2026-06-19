@@ -10,13 +10,14 @@ class FeedController extends Controller
     {
         $user = request()->user();
 
-        $fixtures = Fixture::withCount('bets')
+        $dailyFixtures = Fixture::withCount('bets')
             ->with(['team1', 'team2', 'userBet'])
             ->orderByDesc('started_at')
-            ->get();
+            ->get()
+            ->groupBy(fn ($fixture) => $fixture->started_at->toDateString());
 
         return view('feed', [
-            'fixtures' => $fixtures,
+            'dailyFixtures' => $dailyFixtures,
             'user' => $user,
         ]);
     }
