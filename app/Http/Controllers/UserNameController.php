@@ -16,7 +16,7 @@ class UserNameController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        
+
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:users,name,'.$user->id,
         ]);
