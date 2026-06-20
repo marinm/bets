@@ -46,7 +46,7 @@ class Fixture extends Model
 
     public function getBettingIsClosedAttribute(): bool
     {
-        return $this->is_finished;
+        return $this->is_finished || $this->started_at < now();
     }
 
     public function getStartedAtLocalAttribute(): Carbon
