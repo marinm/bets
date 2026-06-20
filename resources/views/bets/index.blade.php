@@ -3,6 +3,8 @@
 @section('title', 'Bets')
 
 @section('content')
+    <x-back-to-admin-menu />
+
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-white text-2xl font-bold">Bets</h1>   
         <a href="{{ route('bets.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Create</a>

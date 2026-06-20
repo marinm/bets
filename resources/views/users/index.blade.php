@@ -3,6 +3,8 @@
 @section('title', 'Users')
 
 @section('content')
+    <x-back-to-admin-menu />
+
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-white text-2xl font-bold">Users</h1>   
         <a href="{{ route('users.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Create</a>
