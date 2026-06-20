@@ -14,7 +14,7 @@ class FeedController extends Controller
             ->with(['team1', 'team2', 'userBet'])
             ->orderByDesc('started_at')
             ->get()
-            ->groupBy(fn ($fixture) => $fixture->started_at->toDateString());
+            ->groupBy(fn ($fixture) => $fixture->started_at_local->toDateString());
 
         return view('feed', [
             'dailyFixtures' => $dailyFixtures,

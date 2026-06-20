@@ -46,7 +46,7 @@ class FixtureBetController extends Controller
     public function store(Request $request, Fixture $fixture)
     {
         $user = $request->user();
-        
+
         if ($fixture->betting_is_closed) {
             abort(400, 'Betting is closed for this fixture.');
         }

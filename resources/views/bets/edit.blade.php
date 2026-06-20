@@ -26,7 +26,7 @@
             <select name="fixture_id" class="w-full p-2 text-white bg-black border border-white">
                 <option value="">Select Fixture</option>
                 @foreach ($fixtures as $fixture)
-                    <option value="{{ $fixture->id }}" {{ old('fixture_id', $bet->fixture_id) == $fixture->id ? 'selected' : '' }}>{{ $fixture->team1->long_name }} vs {{ $fixture->team2->long_name }} - {{ $fixture->started_at->format('Y-m-d H:i') }}</option>
+                    <option value="{{ $fixture->id }}" {{ old('fixture_id', $bet->fixture_id) == $fixture->id ? 'selected' : '' }}>{{ $fixture->team1->long_name }} vs {{ $fixture->team2->long_name }} - {{ $fixture->started_at_local->format('Y-m-d H:i') }}</option>
                 @endforeach
             </select>
         </label>

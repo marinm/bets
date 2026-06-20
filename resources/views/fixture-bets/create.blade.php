@@ -12,7 +12,7 @@
         <div class="flex items-center justify-start gap-1">
             <p class="text-white text-lg font-bold truncate">{{ $fixture->team2->long_name }}</p>
         </div>
-        <p class="text-gray-400 mt-4">{{ $fixture->started_at->format('D, M j h:i A') }}</p>
+        <p class="text-gray-400 mt-4">{{ $fixture->started_at_local->format('D, M j h:i A') }}</p>
     </div>
 
     <form action="{{ route('fixture-bets.store', ['fixture' => $fixture]) }}" method="POST">

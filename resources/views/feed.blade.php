@@ -21,7 +21,7 @@
                             : route('fixture-bets.create', $fixture)
                     @endphp
                     <a href="{{ $url }}" class="p-4 flex justify-between items-center border-b border-gray-800 first:border-t">
-                        <p class="text-gray-400 font-mono">{{ $fixture->started_at->format('M d') }}</p>
+                        <p class="text-gray-400 font-mono">{{ $fixture->started_at_local->format('M d') }}</p>
                         <div class="font-mono text-white">
                             <span class="{{ $fixture->team1->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team1->country_code }}</span>
                             -

@@ -12,7 +12,7 @@
     <div class="bg-gray-800 p-4 rounded">
         <p class="text-gray-400">User: {{ $bet->user->name }}</p>
         <p class="text-gray-400">Fixture: {{ $bet->fixture->team1->long_name }} vs {{ $bet->fixture->team2->long_name }}</p>
-        <p class="text-gray-400">Fixture Date: {{ $bet->fixture->started_at->format('Y-m-d H:i') }}</p>
+        <p class="text-gray-400">Fixture Date: {{ $bet->fixture->started_at_local->format('Y-m-d H:i') }}</p>
         <p class="text-gray-400">Winner Team: {{ $bet->winnerTeam ? $bet->winnerTeam->long_name : 'No winner' }}</p>
         <p class="text-gray-400">Created: {{ $bet->created_at->format('Y-m-d H:i') }}</p>
     </div>

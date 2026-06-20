@@ -23,7 +23,7 @@
 
         <label class="flex flex-col text-white mt-4">
             Started at
-            <input type="datetime-local" name="started_at" value="{{ old('started_at', $fixture->started_at->format('Y-m-d\TH:i')) }}" class="w-full p-2 text-white bg-black border border-white" />
+            <input type="datetime-local" name="started_at" value="{{ old('started_at', $fixture->started_at_local->format('Y-m-d\TH:i')) }}" class="w-full p-2 text-white bg-black border border-white" />
         </label>
         @error('started_at')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

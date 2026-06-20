@@ -12,7 +12,7 @@
     <div class="bg-gray-800 p-4 rounded">
         <p class="text-gray-400">Team 1: {{ $fixture->team1->long_name }}</p>
         <p class="text-gray-400">Team 2: {{ $fixture->team2->long_name }}</p>
-        <p class="text-gray-400">Started at: {{ $fixture->started_at->format('Y-m-d H:i') }}</p>
+        <p class="text-gray-400">Started at: {{ $fixture->started_at_local->format('Y-m-d H:i') }}</p>
         <p class="text-gray-400">Bets closed at: {{ $fixture->bets_closed_at->format('Y-m-d H:i') }}</p>
         <p class="text-gray-400">Is Finished: {{ $fixture->is_finished ? 'Yes' : 'No' }}</p>
         <p class="text-gray-400">Winning Team: {{ $fixture->winningTeam ? $fixture->winningTeam->long_name : 'N/A' }}</p>

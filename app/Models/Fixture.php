@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Fixture extends Model
 {
@@ -16,6 +17,7 @@ class Fixture extends Model
 
     protected $appends = [
         'betting_is_closed',
+        'started_at_local',
     ];
 
     public function team1()
@@ -46,5 +48,12 @@ class Fixture extends Model
     public function getBettingIsClosedAttribute(): bool
     {
         return $this->is_finished;
+    }
+
+    public function getStartedAtLocalAttribute(): Carbon
+    {
+        $timezone = auth()->user()?->timezone ?? 'America/Toronto';
+
+        return $this->started_at->tz($timezone);
     }
 }

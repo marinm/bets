@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fixture;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class FixtureController extends Controller
 {
@@ -37,6 +38,10 @@ class FixtureController extends Controller
             'winning_team_id' => 'nullable|exists:teams,id',
         ]);
 
+        $timezone = $request->user()->timezone ?? 'America/Toronto';
+        $validated['started_at'] = Carbon::parse($validated['started_at'], $timezone)->utc()->toDateTimeString();
+        $validated['bets_closed_at'] = Carbon::parse($validated['bets_closed_at'], $timezone)->utc()->toDateTimeString();
+
         Fixture::create($validated);
 
         return redirect()->route('fixtures.index');
@@ -66,6 +71,10 @@ class FixtureController extends Controller
             'is_finished' => 'boolean',
             'winning_team_id' => 'nullable|exists:teams,id',
         ]);
+
+        $timezone = $request->user()->timezone ?? 'America/Toronto';
+        $validated['started_at'] = Carbon::parse($validated['started_at'], $timezone)->utc()->toDateTimeString();
+        $validated['bets_closed_at'] = Carbon::parse($validated['bets_closed_at'], $timezone)->utc()->toDateTimeString();
 
         $fixture->update($validated);
 
