@@ -40,13 +40,6 @@
         @error('started_at')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
-        <label class="flex flex-col text-white">
-            Bets closed at
-            <input type="datetime-local" name="bets_closed_at" value="{{ old('bets_closed_at') }}" class="w-full p-2 text-white bg-black border border-white" />
-        </label>
-        @error('bets_closed_at')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
         <label class="flex items-center text-white">
             <input type="checkbox" name="is_finished" value="1" {{ old('is_finished') ? 'checked' : '' }} class="mr-2" />
             Is Finished

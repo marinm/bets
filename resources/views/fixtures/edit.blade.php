@@ -29,14 +29,6 @@
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
 
-        <label class="flex flex-col text-white mt-4">
-            Bets closed at
-            <input type="datetime-local" name="bets_closed_at" value="{{ old('bets_closed_at', $fixture->bets_closed_at->format('Y-m-d\TH:i')) }}" class="w-full p-2 text-white bg-black border border-white" />
-        </label>
-        @error('bets_closed_at')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
-
         <div class="text-white mt-4">
             Winning Team
             <div class="w-full text-white bg-black border border-white rounded">

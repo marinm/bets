@@ -33,14 +33,12 @@ class FixtureController extends Controller
             'started_at' => 'required|date',
             'team_1_id' => 'required|exists:teams,id|different:team_2_id',
             'team_2_id' => 'required|exists:teams,id|different:team_1_id',
-            'bets_closed_at' => 'required|date',
             'is_finished' => 'boolean',
             'winning_team_id' => 'nullable|exists:teams,id',
         ]);
 
         $timezone = $request->user()->timezone ?? 'America/Toronto';
         $validated['started_at'] = Carbon::parse($validated['started_at'], $timezone)->utc()->toDateTimeString();
-        $validated['bets_closed_at'] = Carbon::parse($validated['bets_closed_at'], $timezone)->utc()->toDateTimeString();
 
         Fixture::create($validated);
 
@@ -67,14 +65,12 @@ class FixtureController extends Controller
     {
         $validated = $request->validate([
             'started_at' => 'required|date',
-            'bets_closed_at' => 'required|date',
             'is_finished' => 'boolean',
             'winning_team_id' => 'nullable|exists:teams,id',
         ]);
 
         $timezone = $request->user()->timezone ?? 'America/Toronto';
         $validated['started_at'] = Carbon::parse($validated['started_at'], $timezone)->utc()->toDateTimeString();
-        $validated['bets_closed_at'] = Carbon::parse($validated['bets_closed_at'], $timezone)->utc()->toDateTimeString();
 
         $fixture->update($validated);
 

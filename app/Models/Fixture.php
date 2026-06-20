@@ -7,11 +7,10 @@ use Illuminate\Support\Carbon;
 
 class Fixture extends Model
 {
-    protected $fillable = ['started_at', 'team_1_id', 'team_2_id', 'bets_closed_at', 'is_finished', 'winning_team_id'];
+    protected $fillable = ['started_at', 'team_1_id', 'team_2_id', 'is_finished', 'winning_team_id'];
 
     protected $casts = [
         'started_at' => 'datetime',
-        'bets_closed_at' => 'datetime',
         'is_finished' => 'boolean',
     ];
 
