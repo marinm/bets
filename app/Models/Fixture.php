@@ -17,6 +17,7 @@ class Fixture extends Model
     protected $appends = [
         'betting_is_closed',
         'started_at_local',
+        'is_likely_in_progress',
     ];
 
     public function team1()
@@ -54,5 +55,12 @@ class Fixture extends Model
         $timezone = auth()->user()?->timezone ?? 'America/Toronto';
 
         return $this->started_at->tz($timezone);
+    }
+
+    public function getIsLikelyInProgressAttribute(): bool
+    {
+        return
+            $this->started_at <= now() &&
+            $this->started_at->clone()->addHours(2)->addMinutes(30) >= now();
     }
 }

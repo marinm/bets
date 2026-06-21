@@ -21,11 +21,20 @@
                             : route('fixture-bets.create', $fixture)
                     @endphp
                     <a href="{{ $url }}" class="p-4 flex justify-between items-center border-b border-gray-800 first:border-t">
-                        <p class="text-gray-400 font-mono">{{ $fixture->started_at_local->format('M d') }}</p>
-                        <div class="font-mono text-white">
-                            <span class="{{ $fixture->team1->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team1->country_code }}</span>
-                            -
-                            <span class="{{ $fixture->team2->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team2->country_code }}</span>
+                        <div class="flex justify-between items-center gap-6">
+                            <div class="text-gray-400 font-mono flex items-center">
+                                {{ $fixture->started_at_local->format('M d') }}
+                            </div>
+                            <div class="size-3">
+                                @if ($fixture->is_likely_in_progress)
+                                    <x-ping-dot />
+                                @endif
+                            </div>
+                            <div class="font-mono text-white">
+                                <span class="{{ $fixture->team1->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team1->country_code }}</span>
+                                -
+                                <span class="{{ $fixture->team2->id == $fixture->winning_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winning_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team2->country_code }}</span>
+                            </div>
                         </div>
                         <p class="text-gray-400 font-mono">{{ $fixture->bets_count }}</p>
                         @if ($fixture->userBet)
