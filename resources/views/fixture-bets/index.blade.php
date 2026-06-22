@@ -28,6 +28,11 @@
         </div>
     </div>
 
+    @if ($fixture->bets->isEmpty())
+        <div class="mt-4 border border-gray-600 rounded p-4 text-white">
+            No bets
+        </div>
+    @else
     <div class="mt-4 border border-gray-500 rounded">
         @foreach ($fixture->bets as $bet)
             <div class="p-4 flex justify-between items-center border-b border-b-gray-500 last:border-b-0">
