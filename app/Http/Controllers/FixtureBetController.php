@@ -23,6 +23,7 @@ class FixtureBetController extends Controller
         return view('fixture-bets.index', [
             'bet' => $userBet,
             'fixture' => $fixture,
+            'user' => $user,
         ]);
     }
 
