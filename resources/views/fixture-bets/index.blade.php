@@ -11,6 +11,20 @@
         </div>
     @endif
 
+    @if ($fixture->is_finished)
+        <div class="mb-4 flex justify-center items-center p-4 rounded bg-green-800 text-white">
+            Finished
+        </div>
+    @elseif ($fixture->is_likely_in_progress)
+        <div class="mb-4 flex justify-center items-center p-4 rounded bg-green-800 text-white">
+            In progress
+        </div>
+    @else
+        <div class="mb-4 flex justify-center items-center p-4 rounded bg-orange-800 text-white">
+            {{ $fixture->started_at_local->diffForHumans() }}
+        </div>
+    @endif
+
     <div class="p-4 flex justify-between items-center border border-white rounded">
         <div class="text-white">
             <div>
