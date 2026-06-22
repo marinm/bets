@@ -38,7 +38,7 @@
                 </div>
             </label>
             <label class="flex items-center text-white p-4">
-                <input type="radio" name="winner_team_id" value="" {{ old('winner_team_id') == '' ? 'checked' : '' }} class="mr-2" />
+                <input type="radio" name="winner_team_id" value="" {{ old('winner_team_id', null) === '' ? 'checked' : '' }} class="mr-2" />
                 Draw/Tie
             </label>
         </div>
