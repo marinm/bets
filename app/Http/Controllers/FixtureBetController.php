@@ -57,7 +57,7 @@ class FixtureBetController extends Controller
         }
 
         $validated = $request->validate([
-            'winner_team_id' => 'nullable|exists:teams,id',
+            'winner_team_id' => 'present|nullable|exists:teams,id',
         ]);
 
         Bet::create([
