@@ -15,7 +15,7 @@
             <a href="{{ route('bets.show', ['bet' => $bet]) }}" class="bg-gray-800 p-4 rounded flex justify-between items-center">
                 <div class="flex-1">
                     <h2 class="text-white text-lg font-bold">{{ $bet->user->name }} - {{ $bet->fixture->team1->long_name }} vs {{ $bet->fixture->team2->long_name }}</h2>
-                    <p class="text-gray-400">Prediction: {{ $bet->winnerTeam ? $bet->winnerTeam->long_name : 'Tie' }}</p>
+                    <p class="text-gray-400">Prediction: {{ $bet->winnerTeam ? $bet->winnerTeam->long_name : 'Draw' }}</p>
                 </div>
             </a>
         @endforeach

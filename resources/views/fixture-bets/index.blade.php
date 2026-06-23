@@ -57,7 +57,7 @@
                                 {{ $bet->winnerTeam->country_code }}
                             </span>
                         @else
-                            <span class="text-gray-400">Tie</span>
+                            <span class="text-gray-400">Draw</span>
                         @endif
                     
                     <x-bet-result-icon :fixture="$fixture" :bet="$bet" />
