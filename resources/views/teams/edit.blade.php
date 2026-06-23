@@ -23,6 +23,13 @@
         @error('long_name')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
+        <label class="flex flex-col text-white">
+            Flag code
+            <input type="text" name="flag_code" value="{{ old('flag_code', $team->flag_code) }}" placeholder="Flag code" class="w-full p-2 text-white bg-black border border-white " />
+        </label>
+        @error('flag_code')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
         <button type="submit" class="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded">Update Team</button>
     </form>
 @endsection

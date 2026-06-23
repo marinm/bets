@@ -12,6 +12,7 @@
     <div class="bg-gray-800 p-4 rounded">
         <p class="text-gray-400">Country Code: {{ $team->country_code }}</p>
         <p class="text-gray-400">Long Name: {{ $team->long_name }}</p>
+        <p class="text-gray-400">Flag Code: {{ $team->flag_code }}</p>
     </div>
 
     <form action="{{ route('teams.destroy', ['team' => $team]) }}" method="POST" class="mt-4">

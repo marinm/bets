@@ -24,6 +24,7 @@ class TeamController extends Controller
         $validated = $request->validate([
             'country_code' => 'required|string|size:3|unique:teams,country_code',
             'long_name' => 'required|string|max:255',
+            'flag_code' => 'nullable|string|max:255',
         ]);
 
         Team::create($validated);
@@ -46,6 +47,7 @@ class TeamController extends Controller
         $validated = $request->validate([
             'country_code' => 'required|string|size:3|unique:teams,country_code,'.$team->id,
             'long_name' => 'required|string|max:255',
+            'flag_code' => 'nullable|string|max:255',
         ]);
 
         $team->update($validated);

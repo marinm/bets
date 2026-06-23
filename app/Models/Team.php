@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    protected $fillable = ['country_code', 'long_name'];
+    protected $fillable = ['country_code', 'long_name', 'flag_code'];
 
     public function fixturesAsTeam1()
     {
