@@ -35,33 +35,33 @@
                 <label class="block p-4 w-full border-b border-white">
                     <input
                         type="radio"
-                        name="winning_team_id"
+                        name="winner_team_id"
                         value=""
-                        @checked(is_null(old('winning_team_id', $fixture->winning_team_id)))
+                        @checked(is_null(old('winner_team_id', $fixture->winner_team_id)))
                     />
                     None
                 </label>
                 <label class="block p-4 w-full border-b border-white">
                     <input
                         type="radio"
-                        name="winning_team_id"
+                        name="winner_team_id"
                         value="{{ $fixture->team1->id }}"
-                        @checked(old('winning_team_id', $fixture->winning_team_id) == $fixture->team1->id)
+                        @checked(old('winner_team_id', $fixture->winner_team_id) == $fixture->team1->id)
                     />
                     {{ $fixture->team1->long_name }}
                 </label>
                 <label class="block p-4 w-full border-b border-white">
                     <input
                         type="radio"
-                        name="winning_team_id"
+                        name="winner_team_id"
                         value="{{ $fixture->team2->id }}"
-                        @checked(old('winning_team_id', $fixture->winning_team_id) == $fixture->team2->id)
+                        @checked(old('winner_team_id', $fixture->winner_team_id) == $fixture->team2->id)
                     />
                     {{ $fixture->team2->long_name }}
                 </label>
             </div>
         </label>
-        @error('winning_team_id')
+        @error('winner_team_id')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
 

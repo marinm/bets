@@ -20,7 +20,7 @@ class Team extends Model
 
     public function winningFixtures()
     {
-        return $this->hasMany(Fixture::class, 'winning_team_id');
+        return $this->hasMany(Fixture::class, 'winner_team_id');
     }
 
     public function bets()

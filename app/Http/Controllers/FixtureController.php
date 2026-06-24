@@ -34,7 +34,7 @@ class FixtureController extends Controller
             'team_1_id' => 'required|exists:teams,id|different:team_2_id',
             'team_2_id' => 'required|exists:teams,id|different:team_1_id',
             'is_finished' => 'boolean',
-            'winning_team_id' => 'nullable|exists:teams,id',
+            'winner_team_id' => 'nullable|exists:teams,id',
         ]);
 
         $timezone = $request->user()->timezone ?? 'America/Toronto';
@@ -66,7 +66,7 @@ class FixtureController extends Controller
         $validated = $request->validate([
             'started_at' => 'required|date',
             'is_finished' => 'boolean',
-            'winning_team_id' => 'nullable|exists:teams,id',
+            'winner_team_id' => 'nullable|exists:teams,id',
         ]);
 
         $timezone = $request->user()->timezone ?? 'America/Toronto';

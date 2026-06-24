@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 
 class Fixture extends Model
 {
-    protected $fillable = ['started_at', 'team_1_id', 'team_2_id', 'is_finished', 'winning_team_id'];
+    protected $fillable = ['started_at', 'team_1_id', 'team_2_id', 'is_finished', 'winner_team_id'];
 
     protected $casts = [
         'started_at' => 'datetime',
@@ -32,7 +32,7 @@ class Fixture extends Model
 
     public function winningTeam()
     {
-        return $this->belongsTo(Team::class, 'winning_team_id');
+        return $this->belongsTo(Team::class, 'winner_team_id');
     }
 
     public function bets()

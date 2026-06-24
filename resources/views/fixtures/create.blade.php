@@ -49,14 +49,14 @@
         @enderror
         <label class="flex flex-col text-white">
             Winning Team
-            <select name="winning_team_id" class="w-full p-2 text-white bg-black border border-white">
+            <select name="winner_team_id" class="w-full p-2 text-white bg-black border border-white">
                 <option value="">Select Winning Team (optional)</option>
                 @foreach ($teams as $team)
-                    <option value="{{ $team->id }}" {{ old('winning_team_id') == $team->id ? 'selected' : '' }}>{{ $team->long_name }}</option>
+                    <option value="{{ $team->id }}" {{ old('winner_team_id') == $team->id ? 'selected' : '' }}>{{ $team->long_name }}</option>
                 @endforeach
             </select>
         </label>
-        @error('winning_team_id')
+        @error('winner_team_id')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
         <button type="submit" class="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded">Create Fixture</button>
