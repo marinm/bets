@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\BetStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Bet extends Model
@@ -34,5 +35,10 @@ class Bet extends Model
     public function winnerTeam()
     {
         return $this->belongsTo(Team::class, 'winner_team_id');
+    }
+
+    public function scopeWon(Builder $query)
+    {
+        $query->where('status', BetStatus::Won);
     }
 }

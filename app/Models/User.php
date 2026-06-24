@@ -10,15 +10,20 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public function bets()
-    {
-        return $this->hasMany(Bet::class);
-    }
-
     protected $fillable = [
         'name',
         'internal_name',
         'balance_cents',
         'timezone',
     ];
+
+    public function bets()
+    {
+        return $this->hasMany(Bet::class);
+    }
+
+    public function wonBets()
+    {
+        return $this->bets()->won();
+    }
 }

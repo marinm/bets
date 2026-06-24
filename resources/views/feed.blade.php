@@ -11,7 +11,17 @@
             </svg>
         </a>
     </div>
-    <div class="w-full flex flex-col justify-start items-center gap-4">
+
+    <div class="w-full bg-red-900 rounded-lg text-white border border-red-800">
+        @foreach ($leaderboard as $user)
+            <div class="p-4 border-b border-red-800 last:border-b-0 flex justify-between items-center text-white">
+                <div>{{ $user->name }}</div>
+                <div class="font-mono">{{ $user->won_bets_count }}</div>
+            </div>
+        @endforeach
+    </div>
+
+    <div class="mt-4 w-full flex flex-col justify-start items-center gap-4">
         @foreach ($dailyFixtures as $fixtureGroup)
             <div class="w-full flex flex-col border border-gray-800 bg-gray-900 rounded-lg overflow-hidden">
                 @foreach ($fixtureGroup as $fixture)
