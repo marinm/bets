@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <p class="text-gray-400 font-mono">{{ $fixture->bets_count }}</p>
-                        <x-bet-result-icon :fixture="$fixture" :bet="$fixture->userBet" />
+                        <x-bet-status-icon :bet="$fixture->userBet" />
                     </a>
                 @endforeach
             </div>

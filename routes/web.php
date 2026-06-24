@@ -4,6 +4,7 @@ use App\Http\Controllers\BetController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FixtureBetController;
 use App\Http\Controllers\FixtureController;
+use App\Http\Controllers\FixtureSettleController;
 use App\Http\Controllers\OneTimeTokenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
@@ -41,6 +42,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin-menu', fn () => view('admin-menu'))->name('admin-menu');
     Route::resource('bets', BetController::class);
     Route::resource('fixtures', FixtureController::class);
+    Route::post('/fixtures/{fixture}/settle', FixtureSettleController::class)->name('fixtures.settle');
     Route::resource('teams', TeamController::class);
     Route::resource('users', UserController::class);
     Route::resource('one-time-tokens', OneTimeTokenController::class)->only(['index', 'create', 'store', 'show', 'destroy']);

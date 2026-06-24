@@ -25,6 +25,14 @@
         </div>
     @endif
 
+    @if ($user->is_admin)
+        @if ($fixture->settled_at_local)
+            <div class="mb-4 flex justify-center items-center p-4 rounded bg-green-800 text-white">
+                Settled at {{ $fixture->settled_at_local->format('M d H:i A') }}
+            </div>
+        @endif
+    @endif
+
     <div class="p-4 flex justify-between items-center border border-white rounded">
         <div class="text-white">
             <div>
@@ -60,7 +68,7 @@
                             <span class="text-gray-400">Draw</span>
                         @endif
                     
-                    <x-bet-result-icon :fixture="$fixture" :bet="$bet" />
+                    <x-bet-status-icon :bet="$bet" />
                     </div>
                 </div>
             @endforeach
@@ -73,6 +81,19 @@
                 Edit
             </a>
         </div>
+
+        @if ($fixture->betting_is_closed && $fixture->is_finished)
+            <form action="{{ route('fixtures.settle', $fixture) }}" method="POST">
+                @csrf
+                <button type="submit" class="my-4 block w-full rounded text-center py-2 bg-green-500">
+                    @if (is_null($fixture->settled_at))
+                        Settle
+                    @else
+                        Re-settle
+                    @endif
+                </button>
+            </form>
+        @endif
     @endif
 @endsection
         

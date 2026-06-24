@@ -7,15 +7,24 @@ use Illuminate\Support\Carbon;
 
 class Fixture extends Model
 {
-    protected $fillable = ['started_at', 'team_1_id', 'team_2_id', 'is_finished', 'winner_team_id'];
+    protected $fillable = [
+        'is_finished',
+        'settled_at',
+        'started_at',
+        'team_1_id',
+        'team_2_id',
+        'winner_team_id',
+    ];
 
     protected $casts = [
-        'started_at' => 'datetime',
         'is_finished' => 'boolean',
+        'settled_at' => 'datetime',
+        'started_at' => 'datetime',
     ];
 
     protected $appends = [
         'betting_is_closed',
+        'settled_at_local',
         'started_at_local',
         'is_likely_in_progress',
     ];
@@ -55,6 +64,13 @@ class Fixture extends Model
         $timezone = auth()->user()?->timezone ?? 'America/Toronto';
 
         return $this->started_at->tz($timezone);
+    }
+
+    public function getSettledAtLocalAttribute(): ?Carbon
+    {
+        $timezone = auth()->user()?->timezone ?? 'America/Toronto';
+
+        return $this->settled_at?->tz($timezone) ?? null;
     }
 
     public function getIsLikelyInProgressAttribute(): bool

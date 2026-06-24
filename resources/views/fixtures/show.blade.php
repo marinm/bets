@@ -15,6 +15,7 @@
         <p class="text-gray-400">Started at: {{ $fixture->started_at_local->format('Y-m-d H:i') }}</p>
         <p class="text-gray-400">Is Finished: {{ $fixture->is_finished ? 'Yes' : 'No' }}</p>
         <p class="text-gray-400">Winning Team: {{ $fixture->winningTeam ? $fixture->winningTeam->long_name : 'N/A' }}</p>
+        <p class="text-gray-400">Settled at: {{ $fixture->settled_at?->format('Y-m-d H:i') }}</p>
     </div>
 
     <form action="{{ route('fixtures.destroy', ['fixture' => $fixture]) }}" method="POST" class="mt-4">

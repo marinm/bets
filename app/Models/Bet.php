@@ -2,11 +2,24 @@
 
 namespace App\Models;
 
+use App\Enums\BetStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Bet extends Model
 {
-    protected $fillable = ['user_id', 'fixture_id', 'winner_team_id'];
+    protected $fillable = [
+        'fixture_id',
+        'status',
+        'user_id',
+        'winner_team_id',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'status' => BetStatus::class,
+        ];
+    }
 
     public function user()
     {

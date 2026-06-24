@@ -8,13 +8,12 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class BetResultIcon extends Component
+class BetStatusIcon extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public Fixture $fixture,
         public ?Bet $bet,
     ) {}
 
@@ -23,6 +22,6 @@ class BetResultIcon extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.bet-result-icon');
+        return view('components.bet-status-icon');
     }
 }
