@@ -17,7 +17,7 @@ class FeedController extends Controller
             ->get()
             ->groupBy(fn ($fixture) => $fixture->started_at_local->toDateString());
 
-        $leaderboard = User::withCount('wonBets')
+        $leaderboard = User::withCount(['bets', 'wonBets'])
             ->orderByDesc('won_bets_count')
             ->get();
 

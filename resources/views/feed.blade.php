@@ -16,7 +16,12 @@
         @foreach ($leaderboard as $user)
             <div class="p-4 border-b border-red-800 last:border-b-0 flex justify-between items-center text-white">
                 <div>{{ $user->name }}</div>
-                <div class="font-mono">{{ $user->won_bets_count }}</div>
+                <div class="font-mono">
+                    {{ $user->won_bets_count }}
+                    <span class="text-red-500">
+                        / {{ $user->bets_count }}
+                    </span>
+                </div>
             </div>
         @endforeach
     </div>
