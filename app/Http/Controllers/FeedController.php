@@ -18,7 +18,8 @@ class FeedController extends Controller
             ->groupBy(fn ($fixture) => $fixture->started_at_local->toDateString());
 
         $leaderboard = User::withCount(['bets', 'wonBets'])
-            ->orderByDesc('won_bets_count')
+            ->withSum('bets', 'payout')
+            ->orderByDesc('bets_sum_payout')
             ->get();
 
         return view('feed', [

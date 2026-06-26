@@ -10,6 +10,7 @@ class Bet extends Model
 {
     protected $fillable = [
         'fixture_id',
+        'payout',
         'status',
         'user_id',
         'winner_team_id',

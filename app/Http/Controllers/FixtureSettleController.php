@@ -17,17 +17,38 @@ class FixtureSettleController extends Controller
             abort(400, 'Fixture is not finished.');
         }
 
-        foreach ($fixture->bets as $bet) {
-            $status = ($fixture->winner_team_id === $bet->winner_team_id)
-                ? BetStatus::Won
-                : BetStatus::Lost;
+        $totalBetsCount = $fixture->bets()->count();
 
-            $bet->update(['status' => $status]);
+        $wonBetsCount = $fixture->bets()
+            ->where('winner_team_id', '<=>', $fixture->winner_team_id)
+            ->count();
+
+        $lostBetsCount = $totalBetsCount - $wonBetsCount;
+
+        $payoutPool = $lostBetsCount * 100;
+
+        $payoutPerBet = ($wonBetsCount > 0)
+            ? round($payoutPool / $wonBetsCount)
+            : 0;
+
+        info($payoutPerBet);
+
+        foreach ($fixture->bets as $bet) {
+            if ($fixture->winner_team_id === $bet->winner_team_id) {
+                info("User {$bet->user->name} won {$payoutPerBet}");
+                $bet->update([
+                    'payout' => $payoutPerBet,
+                    'status' => BetStatus::Won,
+                ]);
+            } else {
+                $bet->update([
+                    'payout' => -100,
+                    'status' => BetStatus::Lost,
+                ]);
+            }
         }
 
         $fixture->update(['settled_at' => now()]);
-
-        info($fixture->settled_at);
 
         return redirect()->route('fixture-bets.index', $fixture);
     }

@@ -23,9 +23,9 @@
             <div class="p-4 border-b border-red-800 last:border-b-0 flex justify-between items-center text-white">
                 <div>{{ $user->name }}</div>
                 <div class="font-mono">
-                    {{ $user->won_bets_count }}
+                    {{ round(($user->bets_sum_payout ?? 0) / 100, 2) }}
                     <span class="text-red-500">
-                        / {{ $user->bets_count }}
+                       {{ $user->won_bets_count }} / {{ $user->bets_count }}
                     </span>
                 </div>
             </div>
