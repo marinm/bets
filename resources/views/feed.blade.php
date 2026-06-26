@@ -33,7 +33,7 @@
                 @foreach ($leaderboard as $user)
                 <tr class="w-full border-b border-red-800 last:border-b-0 text-white">
                     <td class="p-4 text-start">{{ $user->name }}</td>
-                    <td class="p-4 text-end font-mono">{{ round(($user->bets_sum_payout ?? 0) / 100, 2) }}</td>
+                    <td class="p-4 text-end font-mono">{{ number_format(($user->bets_sum_payout ?? 0) / 100, 2) }}</td>
                     <td class="p-4 text-end font-mono text-red-500">{{ $user->won_bets_count }}</td>
                     <td class="p-4 text-end font-mono text-red-500">{{ $user->bets_count }}</td>
                 </tr>
