@@ -13,7 +13,7 @@
             User
             <select name="user_id" class="w-full p-2 text-white bg-black border border-white">
                 <option value="">Select User</option>
-                @foreach (\App\Models\User::orderBy('name')->get() as $user)
+                @foreach ($users as $user)
                     <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                 @endforeach
             </select>
@@ -36,7 +36,7 @@
         <label class="flex flex-col text-white">
             Winner Team (optional)
             <select name="winner_team_id" class="w-full p-2 text-white bg-black border border-white">
-                <option value="">No winner (null)</option>
+                <option value="">Draw (null)</option>
                 @foreach ($teams as $team)
                     <option value="{{ $team->id }}" {{ old('winner_team_id') == $team->id ? 'selected' : '' }}>{{ $team->long_name }}</option>
                 @endforeach

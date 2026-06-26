@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bet;
 use App\Models\Fixture;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BetController extends Controller
@@ -21,8 +22,9 @@ class BetController extends Controller
     public function create()
     {
         return view('bets.create', [
-            'fixtures' => Fixture::orderBy('started_at')->get(),
+            'fixtures' => Fixture::orderByDesc('started_at')->get(),
             'teams' => Team::orderBy('long_name')->get(),
+            'users' => User::orderBy('name')->get(),
         ]);
     }
 
