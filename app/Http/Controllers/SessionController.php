@@ -10,36 +10,56 @@ class SessionController extends Controller
 {
     public function create(Request $request)
     {
-        $secret = $request->query('oneTimeToken');
-
-        // Verify the token exists
-        $oneTimeToken = OneTimeToken::where('secret', $secret)->first();
-        if (! $oneTimeToken) {
-            return redirect('/')->with('error', 'Invalid or expired token');
+        if ($request->user()) {
+            return redirect()->route('profile.show');
         }
 
-        return view('sessions.create', [
-            'secret' => $secret,
-            'userName' => $oneTimeToken->user->name,
-        ]);
+        $secret = $request->query('oneTimeToken');
+
+        if ($secret) {
+            // Verify the token exists
+            $oneTimeToken = OneTimeToken::where('secret', $secret)->first();
+            if (! $oneTimeToken) {
+                return redirect('/')->with('error', 'Invalid or expired token');
+            }
+
+            return view('sessions.create', [
+                'secret' => $secret,
+                'userName' => $oneTimeToken->user->name,
+            ]);
+        }
+
+        return view('sessions.create');
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'secret' => 'required|string',
-        ]);
+        $validated = $request->has('secret')
+            ? $request->validate(['secret' => 'required|string'])
+            : $request->validate(['name' => 'required|string', 'password' => 'required|string']);
 
-        $oneTimeToken = OneTimeToken::where('secret', $validated['secret'])->first();
+        if ($request->has('secret')) {
+            $oneTimeToken = OneTimeToken::where('secret', $validated['secret'])->first();
 
-        if (! $oneTimeToken) {
-            return redirect('/')->with('error', 'Invalid or expired token');
+            if (! $oneTimeToken) {
+                return redirect()->route('home')->with('error', 'Invalid or expired token');
+            }
+
+            $user = $oneTimeToken->user;
+            Auth::login($user);
+            $oneTimeToken->forceDelete();
+        } elseif ($request->has(['name', 'password'])) {
+            if (Auth::attempt($validated)) {
+                $request->session()->regenerate();
+
+                return redirect()->intended('home');
+            }
+
+            return back()->withErrors([
+                'attempt' => 'No match found.',
+            ])->onlyInput('name');
         }
 
-        $user = $oneTimeToken->user;
-        Auth::login($user);
-        $oneTimeToken->forceDelete();
-
-        return redirect('/');
+        return redirect()->route('home');
     }
 }

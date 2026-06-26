@@ -16,7 +16,7 @@ use App\Http\Controllers\UserTimezoneController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('feed'))->name('home');
-Route::get('/login', fn () => view('login'))->name('login');
+Route::get('/login', fn () => redirect()->route('sessions.create'))->name('login');
 Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
 Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.store');
 
