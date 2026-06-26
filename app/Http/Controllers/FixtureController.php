@@ -74,7 +74,7 @@ class FixtureController extends Controller
 
         $fixture->update($validated);
 
-        return redirect()->route('fixtures.show', ['fixture' => $fixture]);
+        return redirect()->route('fixture-bets.index', ['fixture' => $fixture]);
     }
 
     public function destroy(Fixture $fixture)
