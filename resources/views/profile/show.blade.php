@@ -14,6 +14,10 @@
             <span class="text-white">Name</span>
             <span class="text-gray-400">{{ $user->name }}</span>
         </a>
+        <a href="{{ route('user-password.edit') }}" class="flex items-center justify-between w-full p-4 border-b border-white">
+            <span class="text-white">Password</span>
+            <span class="text-gray-400">{{ $user->password ? '••••••••' : '-' }}</span>
+        </a>
         <a href="{{ route('profile.timezone.edit') }}" class="flex items-center justify-between w-full p-4">
             <span class="text-white">Timezone</span>
             <span class="text-gray-400">{{ $user->timezone }}</span>

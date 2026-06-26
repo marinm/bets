@@ -11,6 +11,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserNameController;
+use App\Http\Controllers\UserPasswordController;
 use App\Http\Controllers\UserTimezoneController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/name', [UserNameController::class, 'store'])->name('profile.name.store');
     Route::get('/profile/timezone/edit', [UserTimezoneController::class, 'edit'])->name('profile.timezone.edit');
     Route::put('/profile/timezone', [UserTimezoneController::class, 'update'])->name('profile.timezone.update');
+    Route::get('/password/edit', [UserPasswordController::class, 'edit'])->name('user-password.edit');
+    Route::put('/password', [UserPasswordController::class, 'update'])->name('user-password.update');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
