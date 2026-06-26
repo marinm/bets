@@ -12,7 +12,7 @@
         </a>
     </div>
 
-    <details class="overflow-hidden w-full bg-red-900 rounded-lg text-white border border-red-800" open>
+    <details class="overflow-hidden w-full bg-red-900 rounded-lg text-white border border-red-800">
         <summary class="p-4 list-none flex justify-between items-center">
             <div>Leaderboard</div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
