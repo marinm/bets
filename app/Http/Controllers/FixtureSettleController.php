@@ -31,11 +31,8 @@ class FixtureSettleController extends Controller
             ? round($payoutPool / $wonBetsCount)
             : 0;
 
-        info($payoutPerBet);
-
         foreach ($fixture->bets as $bet) {
             if ($fixture->winner_team_id === $bet->winner_team_id) {
-                info("User {$bet->user->name} won {$payoutPerBet}");
                 $bet->update([
                     'payout' => $payoutPerBet,
                     'status' => BetStatus::Won,
