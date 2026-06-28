@@ -33,7 +33,7 @@
         @endif
     @endif
 
-    <div class="p-4 flex justify-between items-center border border-white rounded">
+    <div class="p-4 flex justify-between items-center border-3 border-gray-900 rounded-xl">
         <div class="text-white">
             <div>
                 <span class="font-mono {{ $fixture->team1->id == $fixture->winner_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winner_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team1->country_code }}</span>
@@ -55,24 +55,65 @@
             No bets
         </div>
     @else
-        <div class="mt-4 border border-gray-500 rounded">
-            @foreach ($fixture->bets as $bet)
-                <div class="p-4 flex justify-between items-center border-b border-b-gray-500 last:border-b-0">
-                    <p class="text-gray-400">{{ $bet->user->name }}</p>
-                    <div class="flex items-center gap-2">
-                        @if($bet->winnerTeam)
-                            <span class="text-white font-mono">
-                                {{ $bet->winnerTeam->country_code }}
-                            </span>
-                        @else
-                            <span class="text-gray-400">Draw</span>
-                        @endif
-                    
-                    <x-bet-status-icon :bet="$bet" />
+        @php
+            $team1Bets = $fixture->bets->where('winner_team_id', $fixture->team_1_id);
+            $drawBets = $fixture->bets->whereNull('winner_team_id');
+            $team2Bets = $fixture->bets->whereNull('winner_team_id', $fixture->team_2_id);
+        @endphp
+        @if ($team1Bets->isNotEmpty())
+            <div class="mt-4 border border-gray-900 rounded-xl">    
+                @foreach ($team1Bets as $bet)
+                    <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
+                        <div class="flex items-center gap-2 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                            {{ $bet->user->name }}
+                        </div>
+                        <div class="flex justify-end items-center gap-2 text-white font-mono">
+                            {{ $fixture->team1->country_code }}
+                            <x-bet-status-icon :bet="$bet" />
+                        </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @endif
+        @if ($drawBets->isNotEmpty())
+            <div class="mt-4 border border-gray-900 rounded-xl">    
+                @foreach ($drawBets as $bet)
+                    <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
+                        <div class="flex items-center gap-2 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                            {{ $bet->user->name }}
+                        </div>
+                        <div class="flex justify-end items-center gap-2 text-white">
+                            Draw
+                            <x-bet-status-icon :bet="$bet" />
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+        @if ($team2Bets->isNotEmpty())
+            <div class="mt-4 border border-gray-900 rounded-xl">    
+                @foreach ($team2Bets as $bet)
+                    <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
+                        <div class="flex items-center gap-2 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                            {{ $bet->user->name }}
+                        </div>
+                        <div class="flex justify-end items-center gap-2 text-white font-mono">
+                            {{ $fixture->team2->country_code }}
+                            <x-bet-status-icon :bet="$bet" />
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     @endif
 
     @if ($user->is_admin)
