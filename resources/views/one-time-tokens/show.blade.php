@@ -20,6 +20,10 @@
 
     <p class="text-white text-center text-lg bold">{{ $oneTimeToken->user->name }}</p>
 
+    <div class="font-mono text-white mt-4">
+        {{ $url }}
+    </div>
+
     <form action="{{ route('one-time-tokens.destroy', $oneTimeToken) }}" method="POST" class="mt-12">
         @method('DELETE')
         @csrf
