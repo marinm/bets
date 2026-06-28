@@ -53,30 +53,34 @@
             <span class="font-mono text-lg">{{ $fixture->team1->country_code }}</span>
             <span>{{ $fixture->team1->long_name }}</span>
             @if ($fixture->is_finished)
+                <div class="mt-2 text-sm">
                 @if (is_null($fixture->winner_team_id))
-                    <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Draw</div>
+                    <span class="text-gray-500">Draw</span>
                 @else
                     @if ($fixture->winner_team_id == $fixture->team_1_id)
-                        <div class="mt-2 py-1 px-2 text-sm bg-lime-500 rounded text-black">Won</div>
+                        <span class="text-lime-500">Won</span>
                     @else
-                        <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Lost</div>
+                        <span class="text-gray-500">Lost</span>
                     @endif
                 @endif
+                </div>
             @endif
         </div>
         <div class="w-full p-4 flex flex-col justify-center items-center border-3 border-gray-900 rounded-xl text-white">
             <span class="font-mono text-lg">{{ $fixture->team2->country_code }}</span>
             <span>{{ $fixture->team2->long_name }}</span>
             @if ($fixture->is_finished)
+                <div class="mt-2 text-sm">
                 @if (is_null($fixture->winner_team_id))
-                    <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Draw</div>
+                    <span class="text-gray-500">Draw</span>
                 @else
                     @if ($fixture->winner_team_id == $fixture->team_2_id)
-                        <div class="mt-2 py-1 px-2 text-sm bg-lime-500 rounded">Won</div>
+                        <span class="text-lime-500">Won</span>
                     @else
-                        <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Lost</div>
+                        <span class="text-gray-500">Lost</span>
                     @endif
                 @endif
+                </div>
             @endif
         </div>
     </div>
