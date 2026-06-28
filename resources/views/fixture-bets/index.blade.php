@@ -60,14 +60,6 @@
         </div>
     @endif
 
-    @if ($user->is_admin)
-        @if ($fixture->settled_at_local)
-            <div class="mb-4 flex justify-center items-center text-gray-500">
-                Settled at {{ $fixture->settled_at_local->format('M d H:i A') }}
-            </div>
-        @endif
-    @endif
-
     @if ($fixture->betting_is_closed)
         <div class="mt-4 flex justify-center items-center text-gray-500">
             Betting is closed
@@ -136,6 +128,14 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        @endif
+    @endif
+
+    @if ($user->is_admin)
+        @if ($fixture->settled_at_local)
+            <div class="mt-4 flex justify-center items-center text-gray-500">
+                Settled at {{ $fixture->settled_at_local->format('M d h:i A') }}
             </div>
         @endif
     @endif
