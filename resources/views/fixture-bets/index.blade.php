@@ -51,7 +51,8 @@
             Finished
         </div>
     @elseif ($fixture->is_likely_in_progress)
-        <div class="mb-4 flex justify-center items-center text-lime-500">
+        <div class="mb-4 flex justify-center items-center gap-2 text-lime-500">
+            <x-ping-dot />
             In progress
         </div>
     @else
