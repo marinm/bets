@@ -39,8 +39,7 @@
                 <span>- {{ $fixture->team2->long_name }}</span>
             </div>
             <div class="text-white">
-                {{ $fixture->started_at_local->format('D M j g:i A') }}<br />
-                {{ $fixture->started_at_local->diffForHumans() }}
+                Kickoff: {{ $fixture->started_at_local->format('D M j g:i A') }}
             </div>
         </div>
     </div>
