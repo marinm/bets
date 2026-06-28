@@ -28,37 +28,7 @@
         @endif
     </div>
 
-    
-
-    @if ($fixture->betting_is_closed)
-        <div class="mb-4 flex justify-center items-center p-4 rounded bg-blue-900 text-white">
-            Betting is closed
-        </div>
-    @endif
-
-    @if ($fixture->is_finished)
-        <div class="mb-4 flex justify-center items-center p-4 rounded bg-green-800 text-white">
-            Finished
-        </div>
-    @elseif ($fixture->is_likely_in_progress)
-        <div class="mb-4 flex justify-center items-center p-4 rounded bg-green-800 text-white">
-            In progress
-        </div>
-    @else
-        <div class="mb-4 flex justify-center items-center p-4 rounded bg-orange-800 text-white">
-            {{ $fixture->started_at_local->diffForHumans() }}
-        </div>
-    @endif
-
-    @if ($user->is_admin)
-        @if ($fixture->settled_at_local)
-            <div class="mb-4 flex justify-center items-center p-4 rounded bg-green-800 text-white">
-                Settled at {{ $fixture->settled_at_local->format('M d H:i A') }}
-            </div>
-        @endif
-    @endif
-
-    <div class="p-4 flex justify-between items-center border-3 border-gray-900 rounded-xl">
+    <div class="mb-4 p-4 flex justify-between items-center border-3 border-gray-900 rounded-xl">
         <div class="text-white">
             <div>
                 <span class="font-mono {{ $fixture->team1->id == $fixture->winner_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winner_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team1->country_code }}</span>
@@ -75,18 +45,47 @@
         </div>
     </div>
 
+
+    @if ($fixture->is_finished)
+        <div class="mb-4 flex justify-center items-center text-gray-500">
+            Finished
+        </div>
+    @elseif ($fixture->is_likely_in_progress)
+        <div class="mb-4 flex justify-center items-center text-lime-500">
+            In progress
+        </div>
+    @else
+        <div class="mb-4 flex justify-center items-center text-orange-500">
+            {{ $fixture->started_at_local->diffForHumans() }}
+        </div>
+    @endif
+
+    @if ($user->is_admin)
+        @if ($fixture->settled_at_local)
+            <div class="mb-4 flex justify-center items-center text-gray-500">
+                Settled at {{ $fixture->settled_at_local->format('M d H:i A') }}
+            </div>
+        @endif
+    @endif
+
+    @if ($fixture->betting_is_closed)
+        <div class="mt-4 flex justify-center items-center text-gray-500">
+            Betting is closed
+        </div>
+    @endif
+
     @if ($fixture->bets->isEmpty())
         <div class="mt-4 border border-gray-600 rounded p-4 text-white">
             No bets
         </div>
-    @else
+    @else   
         @php
             $team1Bets = $fixture->bets->where('winner_team_id', $fixture->team_1_id);
             $drawBets = $fixture->bets->whereNull('winner_team_id');
             $team2Bets = $fixture->bets->where('winner_team_id', $fixture->team_2_id);
         @endphp
         @if ($team1Bets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl text-lg">    
+            <div class="mt-4 border border-gray-900 rounded-xl">    
                 @foreach ($team1Bets as $bet)
                     <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
                         <div class="flex items-center gap-2 text-white">
@@ -104,7 +103,7 @@
             </div>
         @endif
         @if ($drawBets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl text-lg">    
+            <div class="mt-4 border border-gray-900 rounded-xl">    
                 @foreach ($drawBets as $bet)
                     <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
                         <div class="flex items-center gap-2 text-white">
@@ -122,7 +121,7 @@
             </div>
         @endif
         @if ($team2Bets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl text-lg">    
+            <div class="mt-4 border border-gray-900 rounded-xl">    
                 @foreach ($team2Bets as $bet)
                     <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
                         <div class="flex items-center gap-2 text-white">
