@@ -3,7 +3,32 @@
 @section('title', 'Bets')
 
 @section('content')
-    <a href="{{ route('feed') }}" class="block mt-2 mb-4 text-gray-500">Back</a>
+    <div class="mb-2 flex justify-between items-center">
+        <a href="{{ route('feed') }}" class="block mt-2 mb-4 text-gray-500">Back</a>
+
+        @if ($user->is_admin)
+            <div class="flex justify-end items-center gap-2">
+                @if ($fixture->betting_is_closed && $fixture->is_finished)
+                    <form action="{{ route('fixtures.settle', $fixture) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="rounded text-center py-2 px-4 bg-green-500">
+                            @if (is_null($fixture->settled_at))
+                                Settle
+                            @else
+                                Re-settle
+                            @endif
+                        </button>
+                    </form>
+                @endif
+
+                <a href="{{ route('fixtures.edit', $fixture) }}" class="py-2 px-4 bg-blue-500 text-white rounded">
+                    Edit
+                </a>
+            </div>
+        @endif
+    </div>
+
+    
 
     @if ($fixture->betting_is_closed)
         <div class="mb-4 flex justify-center items-center p-4 rounded bg-blue-900 text-white">
@@ -61,7 +86,7 @@
             $team2Bets = $fixture->bets->where('winner_team_id', $fixture->team_2_id);
         @endphp
         @if ($team1Bets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl">    
+            <div class="mt-4 border border-gray-900 rounded-xl text-lg">    
                 @foreach ($team1Bets as $bet)
                     <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
                         <div class="flex items-center gap-2 text-white">
@@ -79,7 +104,7 @@
             </div>
         @endif
         @if ($drawBets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl">    
+            <div class="mt-4 border border-gray-900 rounded-xl text-lg">    
                 @foreach ($drawBets as $bet)
                     <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
                         <div class="flex items-center gap-2 text-white">
@@ -97,7 +122,7 @@
             </div>
         @endif
         @if ($team2Bets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl">    
+            <div class="mt-4 border border-gray-900 rounded-xl text-lg">    
                 @foreach ($team2Bets as $bet)
                     <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
                         <div class="flex items-center gap-2 text-white">
@@ -113,27 +138,6 @@
                     </div>
                 @endforeach
             </div>
-        @endif
-    @endif
-
-    @if ($user->is_admin)
-        <div class="w-full mt-8">
-            <a href="{{ route('fixtures.edit', $fixture) }}" class="block text-center w-full px-4 py-2 bg-blue-500 text-white rounded">
-                Edit
-            </a>
-        </div>
-
-        @if ($fixture->betting_is_closed && $fixture->is_finished)
-            <form action="{{ route('fixtures.settle', $fixture) }}" method="POST">
-                @csrf
-                <button type="submit" class="my-4 block w-full rounded text-center py-2 bg-green-500">
-                    @if (is_null($fixture->settled_at))
-                        Settle
-                    @else
-                        Re-settle
-                    @endif
-                </button>
-            </form>
         @endif
     @endif
 @endsection
