@@ -28,37 +28,58 @@
         @endif
     </div>
 
-    <div class="mb-4 p-4 flex justify-between items-center border-3 border-gray-900 rounded-xl">
-        <div class="text-white">
-            <div>
-                <span class="font-mono {{ $fixture->team1->id == $fixture->winner_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winner_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team1->country_code }}</span>
-                <span>- {{ $fixture->team1->long_name }}</span>
-            </div>
-            <div>
-                <span class="font-mono {{ $fixture->team2->id == $fixture->winner_team_id ? 'border-b-4 border-b-lime-500' : ''}} {{ ($fixture->is_finished && is_null($fixture->winner_team_id)) ? 'border-b-4 border-b-white' : '' }}">{{ $fixture->team2->country_code }}</span>
-                <span>- {{ $fixture->team2->long_name }}</span>
-            </div>
-            <div class="text-white">
-                Kickoff: {{ $fixture->started_at_local->format('D M j g:i A') }}
-            </div>
+    <div class="flex justify-between items-center">
+        <div class="my-4 text-gray-500">
+            {{ $fixture->started_at_local->format('D M j g:i A') }}
         </div>
+         @if ($fixture->is_finished)
+            <span class="text-gray-500">
+                Finished
+            </span>
+        @elseif ($fixture->is_likely_in_progress)
+            <span class="text-lime-500">
+                <x-ping-dot />
+                In progress
+            </span>
+        @else
+            <span class="text-orange-500">
+                Coming up
+            </span>
+        @endif
     </div>
 
-
-    @if ($fixture->is_finished)
-        <div class="mb-4 flex justify-center items-center text-gray-500">
-            Finished
+    <div class="flex justify-center items-center gap-2">
+        <div class="w-full p-4 flex flex-col justify-center items-center border-3 border-gray-900 rounded-xl text-white">
+            <span class="font-mono text-lg">{{ $fixture->team1->country_code }}</span>
+            <span>{{ $fixture->team1->long_name }}</span>
+            @if ($fixture->is_finished)
+                @if (is_null($fixture->winner_team_id))
+                    <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Draw</div>
+                @else
+                    @if ($fixture->winner_team_id == $fixture->team_1_id)
+                        <div class="mt-2 py-1 px-2 text-sm bg-lime-500 rounded text-black">Won</div>
+                    @else
+                        <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Lost</div>
+                    @endif
+                @endif
+            @endif
         </div>
-    @elseif ($fixture->is_likely_in_progress)
-        <div class="mb-4 flex justify-center items-center gap-2 text-lime-500">
-            <x-ping-dot />
-            In progress
+        <div class="w-full p-4 flex flex-col justify-center items-center border-3 border-gray-900 rounded-xl text-white">
+            <span class="font-mono text-lg">{{ $fixture->team2->country_code }}</span>
+            <span>{{ $fixture->team2->long_name }}</span>
+            @if ($fixture->is_finished)
+                @if (is_null($fixture->winner_team_id))
+                    <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Draw</div>
+                @else
+                    @if ($fixture->winner_team_id == $fixture->team_2_id)
+                        <div class="mt-2 py-1 px-2 text-sm bg-lime-500 rounded">Won</div>
+                    @else
+                        <div class="mt-2 py-1 px-2 text-sm bg-gray-500 rounded">Lost</div>
+                    @endif
+                @endif
+            @endif
         </div>
-    @else
-        <div class="mb-4 flex justify-center items-center text-orange-500">
-            {{ $fixture->started_at_local->diffForHumans() }}
-        </div>
-    @endif
+    </div>
 
     @if ($fixture->betting_is_closed)
         <div class="mt-4 flex justify-center items-center text-gray-500">
