@@ -58,7 +58,7 @@
         @php
             $team1Bets = $fixture->bets->where('winner_team_id', $fixture->team_1_id);
             $drawBets = $fixture->bets->whereNull('winner_team_id');
-            $team2Bets = $fixture->bets->whereNull('winner_team_id', $fixture->team_2_id);
+            $team2Bets = $fixture->bets->where('winner_team_id', $fixture->team_2_id);
         @endphp
         @if ($team1Bets->isNotEmpty())
             <div class="mt-4 border border-gray-900 rounded-xl">    
