@@ -41,7 +41,7 @@
                 <x-ping-dot />
                 In progress
             </span>
-        @else
+        @elseif ($fixture->started_at > now())
             <span class="text-orange-500">
                 Coming up
             </span>
