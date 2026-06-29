@@ -17,14 +17,8 @@ class FeedController extends Controller
             ->get()
             ->groupBy(fn ($fixture) => $fixture->started_at_local->toDateString());
 
-        $leaderboard = User::withCount(['bets', 'wonBets'])
-            ->withSum('bets', 'payout')
-            ->orderByDesc('bets_sum_payout')
-            ->get();
-
         return view('feed', [
             'dailyFixtures' => $dailyFixtures,
-            'leaderboard' => $leaderboard,
             'user' => $user,
         ]);
     }
