@@ -79,6 +79,6 @@ class Fixture extends Model
     {
         return (! $this->is_finished) &&
             $this->started_at <= now() &&
-            $this->started_at->clone()->addHours(2)->addMinutes(30) >= now();
+            $this->started_at->clone()->addHours(3) >= now();
     }
 }
