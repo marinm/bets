@@ -57,7 +57,11 @@ class FixtureBetController extends Controller
         }
 
         $validated = $request->validate([
-            'winner_team_id' => 'present|nullable|exists:teams,id',
+            'winner_team_id' => [
+                'present',
+                $fixture->can_draw ? 'nullable' : 'required',
+                'exists:teams,id',
+            ],
         ]);
 
         Bet::create([

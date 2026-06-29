@@ -9,6 +9,7 @@ class Fixture extends Model
 {
     protected $fillable = [
         'is_finished',
+        'can_draw',
         'settled_at',
         'started_at',
         'team_1_id',
@@ -17,6 +18,7 @@ class Fixture extends Model
     ];
 
     protected $casts = [
+        'can_draw' => 'boolean',
         'is_finished' => 'boolean',
         'settled_at' => 'datetime',
         'started_at' => 'datetime',

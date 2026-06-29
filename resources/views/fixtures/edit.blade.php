@@ -65,6 +65,23 @@
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
 
+        <div class="text-white mt-4">
+            Can draw
+            <div class="w-full text-white bg-black border border-white rounded">
+                <label class="block p-4 w-full text-white border-b border-white">
+                    <input type="radio" name="can_draw" value="1" @checked($fixture->can_draw) />
+                    Yes
+                </label>
+                <label class="block p-4 w-full text-white">
+                    <input type="radio" name="can_draw" value="0" @checked(!$fixture->can_draw) />
+                    No
+                </label>
+            </div>
+        </label>
+        @error('can_draw')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+
         <label class="flex items-center text-white p-4 border border-white rounded mt-4">
             <input type="checkbox" name="is_finished" value="1" @checked(old('is_finished', $fixture->is_finished)) }} class="mr-2" />
             Is Finished

@@ -47,6 +47,24 @@
         @error('is_finished')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
+
+        <div class="text-white mt-4">
+            Can draw
+            <div class="w-full text-white bg-black border border-white rounded">
+                <label class="block p-4 w-full text-white border-b border-white">
+                    <input type="radio" name="can_draw" value="1" @checked(old('can_draw', true)) />
+                    Yes
+                </label>
+                <label class="block p-4 w-full text-white">
+                    <input type="radio" name="can_draw" value="0" @checked(!old('can_draw', true)) />
+                    No
+                </label>
+            </div>
+        </label>
+        @error('can_draw')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+
         <label class="flex flex-col text-white">
             Winning Team
             <select name="winner_team_id" class="w-full p-2 text-white bg-black border border-white">

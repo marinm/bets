@@ -37,10 +37,12 @@
                     {{ $fixture->team2->country_code }}
                 </div>
             </label>
-            <label class="flex items-center text-white p-4">
-                <input type="radio" name="winner_team_id" value="" {{ old('winner_team_id', null) === '' ? 'checked' : '' }} class="mr-2" />
-                Draw
-            </label>
+            @if ($fixture->can_draw)
+                <label class="flex items-center text-white p-4">
+                    <input type="radio" name="winner_team_id" value="" {{ old('winner_team_id', null) === '' ? 'checked' : '' }} class="mr-2" />
+                    Draw
+                </label>
+            @endif
         </div>
         @error('winner_team_id')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

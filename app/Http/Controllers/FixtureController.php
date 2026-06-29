@@ -33,6 +33,7 @@ class FixtureController extends Controller
             'started_at' => 'required|date',
             'team_1_id' => 'required|exists:teams,id|different:team_2_id',
             'team_2_id' => 'required|exists:teams,id|different:team_1_id',
+            'can_draw' => 'required|boolean',
             'is_finished' => 'boolean',
             'winner_team_id' => 'nullable|exists:teams,id',
         ]);
@@ -65,6 +66,7 @@ class FixtureController extends Controller
     {
         $validated = $request->validate([
             'started_at' => 'required|date',
+            'can_draw' => 'required|boolean',
             'is_finished' => 'boolean',
             'winner_team_id' => 'nullable|exists:teams,id',
         ]);

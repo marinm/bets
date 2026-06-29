@@ -33,7 +33,11 @@ class BetController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'fixture_id' => 'required|exists:fixtures,id',
-            'winner_team_id' => 'nullable|exists:teams,id',
+            'winner_team_id' => [
+                'present',
+                $fixture->can_draw ? 'nullable' : 'required',
+                'exists:teams,id',
+            ],
         ]);
 
         Bet::create($validated);
@@ -64,7 +68,11 @@ class BetController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'fixture_id' => 'required|exists:fixtures,id',
-            'winner_team_id' => 'nullable|exists:teams,id',
+            'winner_team_id' => [
+                'present',
+                $fixture->can_draw ? 'nullable' : 'required',
+                'exists:teams,id',
+            ],
         ]);
 
         $bet->update($validated);
