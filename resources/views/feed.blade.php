@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', config('app.name'))
-
 @section('content')
     <div class="w-full py-4 flex justify-end items-center mb-4 text-white">
         <a href="{{ route('profile.show') }}" class="flex justify-center items-center gap-2 bg-indigo-500 px-2 rounded">
