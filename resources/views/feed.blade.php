@@ -4,15 +4,12 @@
 
 @section('content')
     <div class="w-full py-4 flex justify-end items-center mb-4 text-white">
-        <a href="{{ route('profile.show') }}" class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-            </svg>
+        <a href="{{ route('profile.show') }}" class="flex justify-center items-center gap-2 bg-indigo-500 px-2 rounded">
+            {{ $user->name }}
         </a>
     </div>
 
-    <details class="overflow-hidden w-full bg-red-900 rounded-lg text-white border border-red-800">
+    <details class="border border-indigo-800 bg-indigo-900 overflow-hidden w-full  rounded-lg text-white">
         <summary class="p-4 list-none flex justify-between items-center">
             <div>Leaderboard</div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -22,7 +19,7 @@
 
         <table class="w-full border-collapse table-fixed">
             <thead>
-                <tr class="uppercase text-xs font-normal border-b border-red-800 text-red-500">
+                <tr class="border-b border-indigo-800 uppercase text-xs font-normal text-indigo-500">
                     <th class="p-4 text-start">User</th>
                     <th class="p-4 text-end">Points</th>
                     <th class="p-4 text-end">Won</th>
@@ -31,11 +28,11 @@
             </thead>
             <tbody>
                 @foreach ($leaderboard as $user)
-                <tr class="w-full border-b border-red-800 last:border-b-0 text-white">
+                <tr class="w-full border-b border-indigo-800 last:border-b-0 text-white">
                     <td class="p-4 text-start">{{ $user->name }}</td>
                     <td class="p-4 text-end font-mono">{{ number_format(($user->bets_sum_payout ?? 0) / 100, 2) }}</td>
-                    <td class="p-4 text-end font-mono text-red-500">{{ $user->won_bets_count }}</td>
-                    <td class="p-4 text-end font-mono text-red-500">{{ $user->bets_count }}</td>
+                    <td class="p-4 text-end font-mono text-indigo-500">{{ $user->won_bets_count }}</td>
+                    <td class="p-4 text-end font-mono text-indigo-500">{{ $user->bets_count }}</td>
                 </tr>
                 @endforeach
             </tbody>
