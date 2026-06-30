@@ -5,7 +5,7 @@
         <a href="{{ route('feed') }}" class="text-gray-500">Back</a>
     </div>
 
-    <div class="mt-2 border border-indigo-800 bg-indigo-900 overflow-hidden w-full  rounded-lg text-white">
+    <div class="mt-2 border border-gray-800 bg-gray-900 overflow-hidden w-full  rounded-lg text-white">
         <div class="p-4 list-none flex justify-between items-center">
             <div>Leaderboard</div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -15,7 +15,7 @@
 
         <table class="w-full border-collapse table-fixed">
             <thead>
-                <tr class="border-b border-indigo-800 uppercase text-xs font-normal text-indigo-500">
+                <tr class="border-b border-gray-800 uppercase text-xs font-normal text-gray-500">
                     <th class="p-4 text-start">User</th>
                     <th class="p-4 text-end">Points</th>
                     <th class="p-4 text-end">Won</th>
@@ -24,11 +24,11 @@
             </thead>
             <tbody>
                 @foreach ($leaderboard as $user)
-                <tr class="w-full border-b border-indigo-800 last:border-b-0 text-white">
+                <tr class="w-full border-b border-gray-800 last:border-b-0 text-white">
                     <td class="p-4 text-start">{{ $user->name }}</td>
                     <td class="p-4 text-end font-mono">{{ number_format(($user->bets_sum_payout ?? 0) / 100, 2) }}</td>
-                    <td class="p-4 text-end font-mono text-indigo-500">{{ $user->won_bets_count }}</td>
-                    <td class="p-4 text-end font-mono text-indigo-500">{{ $user->bets_count }}</td>
+                    <td class="p-4 text-end font-mono text-gray-500">{{ $user->won_bets_count }}</td>
+                    <td class="p-4 text-end font-mono text-gray-500">{{ $user->bets_count }}</td>
                 </tr>
                 @endforeach
             </tbody>
