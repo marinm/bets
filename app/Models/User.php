@@ -26,4 +26,9 @@ class User extends Authenticatable
     {
         return $this->bets()->won();
     }
+
+    public function settledBets()
+    {
+        return $this->bets()->settled();
+    }
 }

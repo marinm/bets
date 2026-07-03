@@ -42,4 +42,9 @@ class Bet extends Model
     {
         $query->where('status', BetStatus::Won);
     }
+
+    public function scopeSettled(Builder $query)
+    {
+        $query->whereIn('status', [BetStatus::Won, BetStatus::Lost]);
+    }
 }

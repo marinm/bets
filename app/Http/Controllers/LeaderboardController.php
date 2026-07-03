@@ -9,9 +9,9 @@ class LeaderboardController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $leaderboard = User::withCount(['bets', 'wonBets'])
-            ->withSum('bets', 'payout')
-            ->orderByDesc('bets_sum_payout')
+        $leaderboard = User::withCount(['settledBets', 'wonBets'])
+            ->withSum('settledBets', 'payout')
+            ->orderByDesc('settled_bets_sum_payout')
             ->get();
 
         return view('leaderboard', [

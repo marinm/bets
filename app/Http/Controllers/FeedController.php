@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fixture;
-use App\Models\User;
 
 class FeedController extends Controller
 {
