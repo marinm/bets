@@ -15,7 +15,7 @@
 
     <div class="mt-4 w-full flex flex-col justify-start items-center gap-4">
         @foreach ($dailyFixtures as $fixtureGroup)
-            <div class="w-full flex flex-col border border-gray-800 bg-gray-900 rounded-lg overflow-hidden">
+            <div class="w-full flex flex-col border-3 border-gray-800 bg-gray-900 rounded-lg overflow-hidden">
                 @foreach ($fixtureGroup as $fixture)
                     @php
                         $url = $fixture->userBet
