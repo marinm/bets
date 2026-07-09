@@ -22,7 +22,7 @@
                             ? route('fixture-bets.index', $fixture)
                             : route('fixture-bets.create', $fixture)
                     @endphp
-                    <a href="{{ $url }}" class="p-4 flex justify-between items-center border-b border-gray-800 last:border-b-0">
+                    <a href="{{ $url }}" class="active:bg-blue-900 p-4 flex justify-between items-center border-b border-gray-800 last:border-b-0">
                         <div class="flex justify-between items-center gap-6">
                             <div class="text-gray-400 font-mono flex items-center">
                                 {{ $fixture->started_at_local->format('M d') }}
