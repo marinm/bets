@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="mb-2 flex justify-between items-center">
-        <a href="{{ route('feed') }}" class="block mt-2 mb-4 text-gray-500">Back</a>
+        <x-back-link />
 
         @if ($user->is_admin)
             <div class="flex justify-end items-center gap-2">

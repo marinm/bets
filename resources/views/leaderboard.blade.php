@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="py-4 flex justify-start items-center">
-        <a href="{{ route('feed') }}" class="text-gray-500">Back</a>
+        <x-back-link />
     </div>
 
     <div class="mt-2 border border-gray-800 bg-gray-900 overflow-hidden w-full  rounded-lg text-white">

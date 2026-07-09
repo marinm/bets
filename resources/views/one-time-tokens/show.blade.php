@@ -3,7 +3,7 @@
 @section('title', 'One-Time Token')
 
 @section('content')
-    <a href="{{ route('one-time-tokens.index') }}" class="text-gray-400 hover:text-white mb-4 inline-block">Back</a>
+    <x-back-link />
     <h1 class="text-white text-2xl font-bold mb-6">One-Time Token</h1>
 
     <p class="text-gray-600 text-center">

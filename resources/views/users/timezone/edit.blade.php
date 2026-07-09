@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{ route('profile.show') }}" class="text-gray-400 hover:text-white mb-4 inline-block">Back</a>
+    <x-back-link />
     <h1 class="text-white text-2xl font-bold mb-6">Timezone</h1>
 
     <form action="{{ route('profile.timezone.update') }}" method="POST">

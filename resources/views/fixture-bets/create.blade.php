@@ -3,7 +3,7 @@
 @section('title', 'Create Bet')
 
 @section('content')
-    <a href="{{ route('feed') }}" class="block mt-2 text-gray-400">Back</a>
+    <x-back-link />
 
     <div class="bg-gray-800 p-4 mt-10 mb-4 rounded border border-white">
         <div class="flex items-center justify-start gap-1">
