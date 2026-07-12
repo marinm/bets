@@ -5,7 +5,7 @@
         <x-back-link />
     </div>
 
-    <div class="mt-2 border border-gray-800 bg-gray-900 overflow-hidden w-full  rounded-lg text-white">
+    <div class="mt-2 border border-gray-800 bg-gray-900 overflow-hidden w-full  rounded-lg text-amber-900">
         <div class="p-4 list-none flex justify-between items-center">
             <div>Leaderboard</div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 @foreach ($leaderboard as $user)
-                <tr class="w-full border-b border-gray-800 last:border-b-0 text-white">
+                <tr class="w-full border-b border-gray-800 last:border-b-0 text-amber-900">
                     <td class="p-4 text-start">{{ $user->name }}</td>
                     <td class="p-4 text-end font-mono">{{ number_format(($user->settled_bets_sum_payout ?? 0) / 100, 2) }}</td>
                     <td class="p-4 text-end font-mono text-gray-500">{{ $user->won_bets_count }}</td>

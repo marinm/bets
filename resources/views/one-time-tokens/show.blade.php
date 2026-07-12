@@ -4,7 +4,7 @@
 
 @section('content')
     <x-back-link />
-    <h1 class="text-white text-2xl font-bold mb-6">One-Time Token</h1>
+    <h1 class="text-amber-900 text-2xl font-bold mb-6">One-Time Token</h1>
 
     <p class="text-gray-600 text-center">
         {{ $oneTimeToken->created_at->format('Y-m-d h:i A') }}
@@ -18,16 +18,16 @@
         <div id="qrcode"></div>
     </a>
 
-    <p class="text-white text-center text-lg bold">{{ $oneTimeToken->user->name }}</p>
+    <p class="text-amber-900 text-center text-lg bold">{{ $oneTimeToken->user->name }}</p>
 
-    <div class="font-mono text-white mt-4">
+    <div class="font-mono text-amber-900 mt-4">
         {{ $url }}
     </div>
 
     <form action="{{ route('one-time-tokens.destroy', $oneTimeToken) }}" method="POST" class="mt-12">
         @method('DELETE')
         @csrf
-        <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded">Delete</button>
+        <button type="submit" class="w-full px-4 py-2 bg-red-500 text-amber-900 rounded">Delete</button>
     </form>
 @endsection
 

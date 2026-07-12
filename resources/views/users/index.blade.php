@@ -6,12 +6,12 @@
     <x-back-to-admin-menu />
 
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-white text-2xl font-bold">Users</h1>   
-        <a href="{{ route('users.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Create</a>
+        <h1 class="text-amber-900 text-2xl font-bold">Users</h1>   
+        <a href="{{ route('users.create') }}" class="px-4 py-2 bg-blue-500 text-amber-900 rounded">Create</a>
     </div>
 
     @session('errors')
-        <div class="bg-red-500 text-white p-4 rounded mb-4">
+        <div class="bg-red-500 text-amber-900 p-4 rounded mb-4">
             {{ session('errors')->first() }}
         </div>
     @endsession
@@ -20,7 +20,7 @@
         @foreach ($users as $user)
             <a href="{{ route('users.show', ['user' => $user]) }}" class="p-4 flex justify-between items-center border-b border-white last:border-b-0">
                 <div class="flex-1">
-                    <h2 class="text-white text-lg font-bold">{{ $user->name }}</h2>
+                    <h2 class="text-amber-900 text-lg font-bold">{{ $user->name }}</h2>
                 </div>
             </a>
         @endforeach

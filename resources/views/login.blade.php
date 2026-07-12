@@ -3,7 +3,7 @@
 @section('title', config('app.name'))
 
 @section('content')
-    <div class="w-full h-screen flex flex-col justify-center items-center gap-1 text-white">
+    <div class="w-full h-screen flex flex-col justify-center items-center gap-1 text-amber-900">
         Ask Marin for a one-time link to sign in
     </div>
 @endsection

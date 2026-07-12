@@ -4,13 +4,13 @@
 
 @section('content')
 <div class="flex flex-col items-center justify-center min-h-screen">
-    <form action="{{ route('sessions.store') }}" method="POST" class="w-full flex flex-col items-center justify-center text-white">
+    <form action="{{ route('sessions.store') }}" method="POST" class="w-full flex flex-col items-center justify-center text-amber-900">
         @method('POST')
         @csrf
         @isset($secret)
-            <p class="text-white mb-2">Welcome</p>
+            <p class="text-amber-900 mb-2">Welcome</p>
 
-            <p class="bold text-2xl text-white text-center mb-40">{{ $userName }}</p>
+            <p class="bold text-2xl text-amber-900 text-center mb-40">{{ $userName }}</p>
             <input type="hidden" name="secret" value="{{ old('secret', $secret) }}" readonly />
         @else
             <div class="w-full h-20 flex justify-center items-center mb-5 text-red-500">
@@ -24,7 +24,7 @@
                     type="text"
                     name="name"
                     id="name"
-                    class="w-full border border-white rounded p-4 text-white"
+                    class="w-full border border-white rounded p-4 text-amber-900"
                     placeholder="Name"
                     value="{{ old('name') }}"
                 />
@@ -34,13 +34,13 @@
                     type="password"
                     name="password"
                     id="password"
-                    class="w-full border border-white rounded p-4 text-white"
+                    class="w-full border border-white rounded p-4 text-amber-900"
                     placeholder="Password"
                 />
             </div>
         @endisset
         
-        <button type="submit" class="mt-8 px-12 py-4 bg-lime-500 text-white rounded-full">
+        <button type="submit" class="mt-8 px-12 py-4 bg-lime-500 text-amber-900 rounded-full">
             Continue
         </button>
     </form>
