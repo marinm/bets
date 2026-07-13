@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="w-full py-4 flex justify-between items-center mb-4 text-amber-900">
-        <a href="{{ route('leaderboard') }}" class="flex justify-center items-center gap-2 bg-rose-500 px-2 rounded">
+        <a href="{{ route('leaderboard') }}" class="rounded ring-3 ring-amber-800 border-t-1 border-t-orange-400 bg-orange-500 py-1 flex justify-center items-center gap-2 px-2 text-white font-bold">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
             </svg>
             Leaderboard
         </a>
-        <a href="{{ route('profile.show') }}" class="flex justify-center items-center gap-2 bg-indigo-500 px-2 rounded">
+        <a href="{{ route('profile.show') }}" class="flex ring-3 ring-sky-900 border-t-1 border-t-blue-300 bg-blue-400 rounded px-2 py-1 text-white font-bold">
             {{ $user->name }}
         </a>
     </div>
