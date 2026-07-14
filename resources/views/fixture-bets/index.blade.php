@@ -7,11 +7,11 @@
         <x-back-link />
 
         @if ($user->is_admin)
-            <div class="flex justify-end items-center gap-2">
+            <div class="flex justify-end items-center gap-4">
                 @if ($fixture->betting_is_closed && $fixture->is_finished)
                     <form action="{{ route('fixtures.settle', $fixture) }}" method="POST">
                         @csrf
-                        <button type="submit" class="rounded text-center py-2 px-4 bg-green-500">
+                        <button type="submit" class="ring-3 ring-lime-800 border-t-2 border-t-lime-400 rounded text-center py-2 px-4 bg-lime-500 text-white">
                             @if (is_null($fixture->settled_at))
                                 Settle
                             @else
@@ -21,7 +21,7 @@
                     </form>
                 @endif
 
-                <a href="{{ route('fixtures.edit', $fixture) }}" class="py-2 px-4 bg-blue-500 text-amber-900 rounded">
+                <a href="{{ route('fixtures.edit', $fixture) }}" class="ring-3 ring-sky-900 border-t-2 border-t-blue-400 py-2 px-4 bg-sky-600 rounded text-white">
                     Edit
                 </a>
             </div>
@@ -37,7 +37,7 @@
                 Finished
             </span>
         @elseif ($fixture->is_likely_in_progress)
-            <span class="flex gap-2 items-center justify-end text-lime-500">
+            <span class="flex gap-2 items-center justify-end text-lime-400">
                 <x-ping-dot />
                 In progress
             </span>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="flex justify-center items-center gap-2">
-        <div class="w-full p-4 flex flex-col justify-center items-center border-3 border-gray-900 rounded-xl text-amber-900">
+        <div class="bg-amber-50 w-full p-4 flex flex-col justify-center items-center border-3 border-amber-800 rounded-xl text-amber-800">
             <span class="font-mono text-lg">{{ $fixture->team1->country_code }}</span>
             <span>{{ $fixture->team1->long_name }}</span>
             @if ($fixture->is_finished)
@@ -58,7 +58,7 @@
                     <span class="text-gray-500">Draw</span>
                 @else
                     @if ($fixture->winner_team_id == $fixture->team_1_id)
-                        <span class="text-lime-500">Won</span>
+                        <span class="text-lime-400">Won</span>
                     @else
                         <span class="text-gray-500">Lost</span>
                     @endif
@@ -66,7 +66,7 @@
                 </div>
             @endif
         </div>
-        <div class="w-full p-4 flex flex-col justify-center items-center border-3 border-gray-900 rounded-xl text-amber-900">
+        <div class="bg-amber-50 w-full p-4 flex flex-col justify-center items-center border-3 border-amber-800 rounded-xl text-amber-900">
             <span class="font-mono text-lg">{{ $fixture->team2->country_code }}</span>
             <span>{{ $fixture->team2->long_name }}</span>
             @if ($fixture->is_finished)
@@ -75,7 +75,7 @@
                     <span class="text-gray-500">Draw</span>
                 @else
                     @if ($fixture->winner_team_id == $fixture->team_2_id)
-                        <span class="text-lime-500">Won</span>
+                        <span class="text-lime-400">Won</span>
                     @else
                         <span class="text-gray-500">Lost</span>
                     @endif
@@ -102,9 +102,9 @@
             $team2Bets = $fixture->bets->where('winner_team_id', $fixture->team_2_id);
         @endphp
         @if ($team1Bets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl">    
+            <div class="bg-amber-50 mt-4 border border-amber-800 rounded-xl">    
                 @foreach ($team1Bets as $bet)
-                    <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
+                    <div class="p-4 flex justify-between items-center border-b border-b-amber-800 last:border-b-0">
                         <div class="flex items-center gap-2 text-amber-900">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
@@ -120,9 +120,9 @@
             </div>
         @endif
         @if ($drawBets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl">    
+            <div class="bg-amber-50 mt-4 border border-amber-800 rounded-xl">    
                 @foreach ($drawBets as $bet)
-                    <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
+                    <div class="p-4 flex justify-between items-center border-b border-b-amber-800 last:border-b-0">
                         <div class="flex items-center gap-2 text-amber-900">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
@@ -138,9 +138,9 @@
             </div>
         @endif
         @if ($team2Bets->isNotEmpty())
-            <div class="mt-4 border border-gray-900 rounded-xl">    
+            <div class="bg-amber-50 mt-4 border border-amber-800 rounded-xl">    
                 @foreach ($team2Bets as $bet)
-                    <div class="p-4 flex justify-between items-center border-b border-b-gray-900 last:border-b-0">
+                    <div class="p-4 flex justify-between items-center border-b border-b-amber-800 last:border-b-0">
                         <div class="flex items-center gap-2 text-amber-900">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>

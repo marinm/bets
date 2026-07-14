@@ -17,7 +17,7 @@
             </style>
         @endif
     </head>
-    <body class="bg-amber-50 flex flex-col justify-start items-center">
+    <body class="bg-orange-200 flex flex-col justify-start items-center">
         <div class="container max-w-sm p-4">
             @yield('content')
         </div>
